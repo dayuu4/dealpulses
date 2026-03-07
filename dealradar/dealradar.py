@@ -1786,7 +1786,8 @@ def check_deal_alive(url: str) -> str:
 
     Returns:
         "active"   — URL is reachable, no sold-out signals found
-        "expired"  — HTTP 404/410, or sold-out text detected on page
+        "gone"     — HTTP 404/410/403: page simply doesn't exist anymore (hide entirely)
+        "expired"  — sold-out / unavailable text detected on page (show in expired section)
         "unknown"  — Network error or non-merchant URL; keep as-is
     """
     if not url or not url.startswith("http"):
@@ -1800,7 +1801,7 @@ def check_deal_alive(url: str) -> str:
         resp = requests.head(url, headers=headers, timeout=timeout,
                              allow_redirects=True)
         if resp.status_code in (404, 410, 403):
-            return "expired"
+            return "gone"   # Page is completely gone — hide from site entirely
 
         # Step 2: For 200 responses on merchant pages, fetch a snippet of HTML
         # and scan for sold-out / unavailable language.
@@ -1850,6 +1851,7 @@ def expire_stale_deals():
 
     log.info(f"🔍 Checking expiry for {len(rows)} active deals…")
     expired_count = 0
+    gone_count = 0
 
     for deal_id_str, url in rows:
         status = check_deal_alive(url)
@@ -1859,12 +1861,14 @@ def expire_stale_deals():
         )
         if status == "expired":
             expired_count += 1
+        elif status == "gone":
+            gone_count += 1
 
     con.commit()
     con.close()
 
-    if expired_count:
-        log.info(f"    ❌ Marked {expired_count} deal(s) as expired.")
+    if expired_count or gone_count:
+        log.info(f"    ❌ Marked {expired_count} deal(s) as expired, {gone_count} as gone (error page).")
     else:
         log.info(f"    ✅ All checked deals still active.")
 
@@ -1918,6 +1922,11 @@ def export_deals_json(deals: list, output_dir: str = "."):
     for d in deals:
         did    = d.get("id", "")
         status = status_map.get(did, "active")
+
+        # "gone" = HTTP error page — exclude entirely, don't show on site at all
+        if status == "gone":
+            continue
+
         is_exp = (status == "expired")
 
         if is_exp:

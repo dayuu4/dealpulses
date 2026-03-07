@@ -606,6 +606,24 @@
       </div>
     </section>
 
+    <!-- ── Expired Deals ────────────────────────────────────────────────── -->
+    <section id="expired-section" style="display:none;">
+      <details id="expired-details">
+        <summary style="cursor:pointer;list-style:none;display:flex;align-items:center;
+                        justify-content:space-between;padding:12px 0 10px;
+                        border-top:1px solid #E2E8F0;margin-top:8px;">
+          <span style="font-size:15px;font-weight:700;color:#888;">
+            ⏱ Recently Expired Deals
+            <span id="expired-count-badge"
+                  style="background:#F1F5F9;color:#888;font-size:12px;font-weight:600;
+                         padding:2px 8px;border-radius:10px;margin-left:6px;"></span>
+          </span>
+          <span style="font-size:12px;color:#AAA;" class="expired-toggle-label">Show</span>
+        </summary>
+        <div class="deal-grid" id="expired-grid" style="margin-top:12px;opacity:0.6;"></div>
+      </details>
+    </section>
+
     <!-- ── Bank Bonuses ─────────────────────────────────────────────────── -->
     <section id="bonuses">
       <div class="section-hd">
@@ -1035,14 +1053,32 @@
     _activeFilter = filter || 'All';
     const grid = document.getElementById('deal-grid');
     grid.innerHTML = '';
+
+    // Only show active deals in the main grid
+    const activeDeals = _allDeals.filter(d => d.status !== 'expired');
     const visible = _activeFilter === 'All'
-      ? _allDeals
-      : _allDeals.filter(d => d.category === _activeFilter);
+      ? activeDeals
+      : activeDeals.filter(d => d.category === _activeFilter);
+
     if (visible.length === 0) {
       grid.innerHTML = '<div style="text-align:center;padding:40px;color:#999">No deals in this category yet.</div>';
-      return;
+    } else {
+      visible.forEach(deal => grid.appendChild(buildCard(deal)));
     }
-    visible.forEach(deal => grid.appendChild(buildCard(deal)));
+
+    // Populate expired section separately
+    const expiredDeals = _allDeals.filter(d => d.status === 'expired');
+    const expiredSection = document.getElementById('expired-section');
+    const expiredGrid = document.getElementById('expired-grid');
+    const expiredBadge = document.getElementById('expired-count-badge');
+    if (expiredDeals.length > 0) {
+      expiredSection.style.display = '';
+      expiredBadge.textContent = expiredDeals.length;
+      expiredGrid.innerHTML = '';
+      expiredDeals.forEach(deal => expiredGrid.appendChild(buildCard(deal)));
+    } else {
+      expiredSection.style.display = 'none';
+    }
   }
 
   function setFilter(el) {
@@ -1075,11 +1111,12 @@
           tabsEl.appendChild(tab);
         });
 
-        // Update "see all" count + nav badge
+        // Update "see all" count + nav badge — active deals only
+        const activeCount = _allDeals.filter(d => d.status !== 'expired').length;
         const countEl = document.getElementById('see-all-count');
-        if (countEl) countEl.textContent = 'All ' + _allDeals.length + ' deals →';
+        if (countEl) countEl.textContent = 'All ' + activeCount + ' deals →';
         const navBadge = document.querySelector('.nav-inner a[href="#tech"] .badge');
-        if (navBadge) navBadge.textContent = _allDeals.length;
+        if (navBadge) navBadge.textContent = activeCount;
 
         renderGrid('All');
       })
@@ -1088,6 +1125,17 @@
           '<div style="text-align:center;padding:40px;color:#c00">Could not load deals. Please refresh.</div>';
       });
   }
+
+  // Toggle label for expired details
+  document.addEventListener('DOMContentLoaded', () => {
+    const det = document.getElementById('expired-details');
+    if (det) {
+      det.addEventListener('toggle', () => {
+        const lbl = det.querySelector('.expired-toggle-label');
+        if (lbl) lbl.textContent = det.open ? 'Hide' : 'Show';
+      });
+    }
+  });
 
   loadDeals();
 
