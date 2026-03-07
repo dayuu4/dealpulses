@@ -52,7 +52,7 @@ CONFIG = {
         "request_timeout":    5,                # HTTP timeout in seconds
         "user_agent":         "DealPulses/1.0 DealRadar Bot (+https://dealpulses.com)",
         "max_age_days":       3,                # ← Skip any entry older than 3 days
-        "resolve_merchant_urls": True,          # ← Follow aggregator links → direct merchant URL
+        "resolve_merchant_urls": False,         # ← Disabled: resolving 1000+ URLs per run causes 30min+ timeouts
         "export_json":     True,                # ← Write deals.json + price_history/ after each scan
         "export_json_dir": ".",                 # ← Folder to write to (set to your site root)
         "affiliate_tags": {
