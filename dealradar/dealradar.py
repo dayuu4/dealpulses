@@ -52,7 +52,8 @@ CONFIG = {
         "request_timeout":    5,                # HTTP timeout in seconds
         "user_agent":         "DealPulses/1.0 DealRadar Bot (+https://dealpulses.com)",
         "max_age_days":       3,                # ← Skip any entry older than 3 days
-        "resolve_merchant_urls": False,         # ← Disabled: resolving 1000+ URLs per run causes 30min+ timeouts
+        "resolve_merchant_urls": True,          # ← Follow aggregator links → direct merchant URL
+        "parse_workers":         20,            # ← Parallel threads for parse_entry (URL resolution + image fetch)
         "export_json":     True,                # ← Write deals.json + price_history/ after each scan
         "export_json_dir": ".",                 # ← Folder to write to (set to your site root)
         "affiliate_tags": {
@@ -1367,17 +1368,31 @@ def _first_merchant_link(html: str) -> str:
 
 def resolve_merchant_url(url: str, entry=None) -> str:
     """
-    Given a URL (possibly from an aggregator), return the direct
-    merchant URL.  Falls back to the original URL if resolution fails
-    so the pipeline never breaks.
+    Given a URL (possibly from an aggregator), return the direct merchant URL.
+    Checks the url_cache table first — cache hits skip all HTTP round-trips.
+    Falls back to the original URL if resolution fails so the pipeline never breaks.
 
     Resolution order:
+      0. url_cache hit                  → return cached result immediately
       1. Already a merchant URL         → return as-is
       2. Merchant link in RSS entry     → extract from description/content
       3. HTTP HEAD redirect chain       → check final URL after 301/302
       4. HTTP GET + page scan           → parse page for deal button / merchant <a>
       5. Give up                        → return original URL
     """
+    # ── 0. Cache lookup ────────────────────────────────────────────
+    cached = get_cached_url(url)
+    if cached:
+        log.debug(f"    ↳ Cache hit: {cached}")
+        return cached
+
+    result = _resolve_merchant_url_uncached(url, entry)
+    set_cached_url(url, result)
+    return result
+
+
+def _resolve_merchant_url_uncached(url: str, entry=None) -> str:
+    """Internal: resolve without cache. Called only by resolve_merchant_url()."""
     if not url:
         return url
 
@@ -1571,6 +1586,7 @@ import datetime
 from urllib.parse import urlparse
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 try:
     import feedparser
@@ -1656,6 +1672,14 @@ def init_db():
         )
     """)
 
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS url_cache (
+            original_url  TEXT PRIMARY KEY,
+            resolved_url  TEXT,
+            cached_at     TEXT
+        )
+    """)
+
     con.commit()
     con.close()
 
@@ -1668,6 +1692,34 @@ def deal_id(title, url):
     """Deterministic ID for deduplication."""
     raw = f"{title.lower().strip()}{url}"
     return hashlib.md5(raw.encode()).hexdigest()[:16]
+
+
+def get_cached_url(original_url: str) -> str:
+    """Return a previously resolved URL from the cache, or '' if not found."""
+    try:
+        con = get_db()
+        cur = con.cursor()
+        cur.execute("SELECT resolved_url FROM url_cache WHERE original_url = ?", (original_url,))
+        row = cur.fetchone()
+        con.close()
+        return row[0] if row else ""
+    except Exception:
+        return ""
+
+
+def set_cached_url(original_url: str, resolved_url: str):
+    """Persist an original → resolved URL mapping so future runs skip the HTTP hop."""
+    try:
+        con = get_db()
+        cur = con.cursor()
+        cur.execute(
+            "INSERT OR REPLACE INTO url_cache (original_url, resolved_url, cached_at) VALUES (?, ?, ?)",
+            (original_url, resolved_url, datetime.datetime.utcnow().isoformat()),
+        )
+        con.commit()
+        con.close()
+    except Exception:
+        pass
 
 
 def save_deal(deal):
@@ -2338,25 +2390,45 @@ def run_radar(force_digest=False, top_n=None):
     hot_thresh  = CONFIG["thresholds"]["hot_alert_score"]
     min_thresh  = CONFIG["thresholds"]["digest_min_score"]
 
+    # ── Phase 1: Collect all feed entries ─────────────────────────
+    all_entries = []
     for feed_cfg in FEEDS:
         if not feed_cfg.get("rss", True):
             continue  # Skip non-RSS sources
-
         entries = fetch_feed(feed_cfg)
-
         for entry in entries:
-            deal = parse_entry(entry, feed_cfg)
-            if not deal:
+            all_entries.append((entry, feed_cfg))
+
+    # ── Phase 2: Parse entries in parallel (I/O-bound) ────────────
+    # URL resolution + image fetching are network calls — running 20
+    # at once collapses ~1000s of sequential wait into ~50s.
+    max_workers = CONFIG["settings"].get("parse_workers", 20)
+    log.info(f"Parsing {len(all_entries)} entries with {max_workers} parallel workers…")
+    parsed_deals = []
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {
+            executor.submit(parse_entry, e, fc): (e, fc)
+            for e, fc in all_entries
+        }
+        for future in as_completed(futures):
+            try:
+                deal = future.result()
+            except Exception as exc:
+                log.debug(f"parse_entry raised: {exc}")
                 continue
+            if deal:
+                parsed_deals.append(deal)
 
-            save_deal(deal)
+    # ── Phase 3: Save to DB and classify (sequential — SQLite writes)
+    for deal in parsed_deals:
+        save_deal(deal)
 
-            if deal["score"] >= min_thresh:
-                all_deals.append(deal)
+        if deal["score"] >= min_thresh:
+            all_deals.append(deal)
 
-            # Fire instant alert for HOT deals not yet alerted
-            if deal["score"] >= hot_thresh and not already_alerted(deal["id"]):
-                hot_deals.append(deal)
+        # Fire instant alert for HOT deals not yet alerted
+        if deal["score"] >= hot_thresh and not already_alerted(deal["id"]):
+            hot_deals.append(deal)
 
     log.info("-" * 60)
     log.info(f"Scan complete. Total qualifying deals: {len(all_deals)}")
