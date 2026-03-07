@@ -366,12 +366,6 @@ FEEDS = [
         "priority": "high",
     },
     {
-        "name":     "Woot! Home",
-        "url":      "https://home.woot.com/feeds/all.rss",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
         "name":     "CamelCamelCamel — Amazon Price Drops",
         "url":      "https://camelcamelcamel.com/top_drops/feed",
         "category": "tech",
@@ -497,65 +491,6 @@ FEEDS = [
     },
 
     # ════════════════════════════════════════════════════════════
-    #  GROUP 6 — FINANCE & BANK BONUSES
-    #  Targeting Doctor of Credit's audience directly
-    # ════════════════════════════════════════════════════════════
-    {
-        "name":     "Doctor of Credit",
-        "url":      "https://www.doctorofcredit.com/feed/",
-        "category": "finance",
-        "priority": "high",
-    },
-    {
-        "name":     "The Points Guy",
-        "url":      "https://thepointsguy.com/feed/",
-        "category": "finance",
-        "priority": "high",
-    },
-    {
-        "name":     "Frequent Miler",
-        "url":      "https://frequentmiler.com/feed/",
-        "category": "finance",
-        "priority": "high",
-    },
-    {
-        "name":     "MileValue",
-        "url":      "https://milevalue.com/feed/",
-        "category": "finance",
-        "priority": "medium",
-    },
-    {
-        "name":     "One Mile at a Time",
-        "url":      "https://onemileatatime.com/feed/",
-        "category": "finance",
-        "priority": "medium",
-    },
-    {
-        "name":     "NerdWallet — Credit Cards",
-        "url":      "https://www.nerdwallet.com/blog/category/credit-cards/feed/",
-        "category": "finance",
-        "priority": "medium",
-    },
-    {
-        "name":     "Slickdeals Bank Bonus",
-        "url":      "https://slickdeals.net/newsearch.php?q=bank+bonus&searcharea=deals&searchin=first&rss=1",
-        "category": "finance",
-        "priority": "high",
-    },
-    {
-        "name":     "Slickdeals Credit Card Offers",
-        "url":      "https://slickdeals.net/newsearch.php?q=credit+card+bonus&searcharea=deals&searchin=first&rss=1",
-        "category": "finance",
-        "priority": "high",
-    },
-    {
-        "name":     "Secret Flying (Travel Deals)",
-        "url":      "https://www.secretflying.com/posts/feed/",
-        "category": "travel",
-        "priority": "medium",
-    },
-
-    # ════════════════════════════════════════════════════════════
     #  GROUP 7 — YOUR TOP RETAILERS (SLICKDEALS RSS)
     #  Covers every store on the DealPulses priority retailer list
     #  that was not already in Group 2.
@@ -611,18 +546,6 @@ FEEDS = [
     {
         "name":     "Spectrum Deals (Slickdeals)",
         "url":      "https://slickdeals.net/newsearch.php?q=spectrum+internet&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "QVC Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=qvc&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Walgreens Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=walgreens&searcharea=deals&searchin=first&rss=1",
         "category": "general",
         "priority": "medium",
     },
@@ -820,68 +743,6 @@ FEEDS = [
     #  → food/travel → home/tools → beauty/apparel → other.
     # ════════════════════════════════════════════════════════════
 
-    # ── Retail / Home ─────────────────────────────────────────
-    {
-        "name":     "Home Depot Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=home+depot&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Wayfair Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=wayfair&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Lowe's Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=lowes&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Kohl's Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=kohls&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Macy's Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=macys&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Temu Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=temu&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Chewy Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=chewy&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Office Depot / OfficeMax Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=office+depot&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "low",
-    },
-    {
-        "name":     "CVS Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=cvs&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Groupon Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=groupon&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-
     # ── Telecom / Carriers ─────────────────────────────────────
     {
         "name":     "T-Mobile Deals (Slickdeals)",
@@ -902,32 +763,6 @@ FEEDS = [
         "priority": "medium",
     },
 
-    # ── Streaming ──────────────────────────────────────────────
-    {
-        "name":     "Disney+ Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=disney%2B&searcharea=deals&searchin=first&rss=1",
-        "category": "software",
-        "priority": "high",
-    },
-    {
-        "name":     "Hulu Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=hulu&searcharea=deals&searchin=first&rss=1",
-        "category": "software",
-        "priority": "high",
-    },
-    {
-        "name":     "Max (HBO) Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=max+hbo&searcharea=deals&searchin=first&rss=1",
-        "category": "software",
-        "priority": "high",
-    },
-    {
-        "name":     "Peacock TV Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=peacock+tv&searcharea=deals&searchin=first&rss=1",
-        "category": "software",
-        "priority": "medium",
-    },
-
     # ── Software / SaaS ────────────────────────────────────────
     {
         "name":     "Adobe Deals (Slickdeals)",
@@ -941,77 +776,6 @@ FEEDS = [
         "category": "software",
         "priority": "high",
     },
-    {
-        "name":     "TurboTax Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=turbotax&searcharea=deals&searchin=first&rss=1",
-        "category": "software",
-        "priority": "high",
-    },
-    {
-        "name":     "H&R Block Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=hr+block&searcharea=deals&searchin=first&rss=1",
-        "category": "software",
-        "priority": "medium",
-    },
-
-    # ── Travel / Services ──────────────────────────────────────
-    {
-        "name":     "Expedia Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=expedia&searcharea=deals&searchin=first&rss=1",
-        "category": "travel",
-        "priority": "high",
-    },
-    {
-        "name":     "Priceline Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=priceline&searcharea=deals&searchin=first&rss=1",
-        "category": "travel",
-        "priority": "medium",
-    },
-    {
-        "name":     "Hotels.com Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=hotels.com&searcharea=deals&searchin=first&rss=1",
-        "category": "travel",
-        "priority": "medium",
-    },
-    {
-        "name":     "Booking.com Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=booking.com&searcharea=deals&searchin=first&rss=1",
-        "category": "travel",
-        "priority": "medium",
-    },
-    {
-        "name":     "Valvoline Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=valvoline&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-
-    # ── Food Delivery ──────────────────────────────────────────
-    {
-        "name":     "DoorDash Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=doordash&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Instacart Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=instacart&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Uber Eats Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=uber+eats&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Grubhub Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=grubhub&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-
     # ── Cameras / Drones / Action Cams ─────────────────────────
     {
         "name":     "Canon Deals (Slickdeals)",
@@ -1046,77 +810,6 @@ FEEDS = [
         "priority": "high",
     },
 
-    # ── Home Appliances / Cleaning ─────────────────────────────
-    {
-        "name":     "Dyson Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=dyson&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Shark Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=shark+vacuum&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "KitchenAid Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=kitchenaid&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-
-    # ── Power Tools ────────────────────────────────────────────
-    {
-        "name":     "DEWALT Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=dewalt&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "RYOBI Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=ryobi&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "RIDGID Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=ridgid&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-
-    # ── Apparel / Beauty / Sports ──────────────────────────────
-    {
-        "name":     "Nike Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=nike&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Adidas Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=adidas&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Old Navy / Gap Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=old+navy+gap&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Sephora Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=sephora&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Fanatics Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=fanatics&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
 ]
 
 # Keywords that boost a deal's score when found in title/description
@@ -2134,11 +1827,18 @@ def parse_entry(entry, feed_cfg):
 
     # ── Resolve aggregator links → direct merchant URL ─────────────
     # e.g.  slickdeals.net/f/12345  →  amazon.com/dp/B0ABC123
-    if CONFIG["settings"].get("resolve_merchant_urls", True) and _is_aggregator(url):
+    if _is_aggregator(url):
+        if not CONFIG["settings"].get("resolve_merchant_urls", True):
+            return None   # Resolution disabled — skip all aggregator-sourced deals
         resolved = resolve_merchant_url(url, entry=entry)
         if resolved != url:
             log.info(f"    🔗 {feed_cfg['name']}: {url[:60]}… → {resolved[:60]}")
         url = resolved
+        # If still an aggregator after resolution — couldn't find the merchant link
+        # Don't publish a broken or middleman link; skip this deal entirely
+        if _is_aggregator(url):
+            log.debug(f"    ⛔ Skipping: unresolved aggregator URL for '{title[:50]}'")
+            return None
 
     # ── Freshness filter: drop entries older than max_age_days ────
     max_age = CONFIG["settings"].get("max_age_days", 3)
