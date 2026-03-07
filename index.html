@@ -991,6 +991,7 @@
   let _activeFilter = 'All';
 
   function fmtPrice(n) {
+    if (n == null) return '';
     return '$' + n.toLocaleString('en-US', {minimumFractionDigits: n % 1 === 0 ? 0 : 2, maximumFractionDigits: 2});
   }
   function fmtNum(n) {
