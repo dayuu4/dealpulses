@@ -1,0 +1,124 @@
+name: 🤖 DealRadar — Auto-Update Deals
+
+# ────────────────────────────────────────────────────────────────
+#  Runs DealRadar every 4 hours, commits updated deals.json back
+#  to the repo, which triggers an automatic Netlify redeploy.
+#
+#  Manual trigger: GitHub → Actions → DealRadar → Run workflow
+# ────────────────────────────────────────────────────────────────
+
+on:
+  schedule:
+    # Every 4 hours at :00 (UTC): 00:00, 04:00, 08:00, 12:00, 16:00, 20:00
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+    inputs:
+      force_digest:
+        description: 'Send full daily digest email?'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  dealradar:
+    name: Scan Feeds & Update Deals
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    permissions:
+      contents: write   # needed to commit deals.json back to the repo
+
+    steps:
+      # ── 1. Check out the repo ──────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1   # shallow clone — faster
+
+      # ── 2. Restore cached SQLite DB (speeds up deduplication) ──
+      - name: Restore DealRadar DB cache
+        uses: actions/cache@v4
+        with:
+          path: dealradar/dealradar.db
+          key: dealradar-db-${{ runner.os }}
+          restore-keys: dealradar-db-
+
+      # ── 3. Set up Python ───────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: dealradar/requirements.txt
+
+      # ── 4. Install dependencies ────────────────────────────────
+      - name: Install Python dependencies
+        run: pip install -r dealradar/requirements.txt
+
+      # ── 5. Run DealRadar ───────────────────────────────────────
+      - name: Run DealRadar scan
+        id: radar
+        run: |
+          cd dealradar
+          if [ "${{ github.event.inputs.force_digest }}" = "true" ]; then
+            python dealradar.py --digest
+          else
+            python dealradar.py
+          fi
+        env:
+          # Override SMTP password via GitHub Secret (recommended).
+          # In your repo: Settings → Secrets → Actions → New secret
+          # Name: DEALRADAR_SMTP_PASS  Value: your 16-char app password
+          #
+          # If you haven't set up the secret yet, the hardcoded password
+          # in dealradar.py will be used as a fallback.
+          DEALRADAR_SMTP_PASS: ${{ secrets.DEALRADAR_SMTP_PASS }}
+
+      # ── 6. Copy output files to site root ─────────────────────
+      - name: Copy deals.json to site root
+        run: |
+          # DealRadar writes to dealradar/deals.json (export_json_dir = ".")
+          # We need it at the repo root so the website can fetch it.
+          if [ -f dealradar/deals.json ]; then
+            cp dealradar/deals.json deals.json
+            echo "✅ deals.json updated ($(jq length deals.json) deals)"
+          else
+            echo "⚠️  dealradar/deals.json not found — skipping copy"
+          fi
+
+          # Copy price_history/ if it was generated
+          if [ -d dealradar/price_history ]; then
+            mkdir -p price_history
+            cp -r dealradar/price_history/. price_history/
+            echo "✅ price_history/ synced"
+          fi
+
+      # ── 7. Commit & push updated files ────────────────────────
+      - name: Commit updated deals to repo
+        run: |
+          git config user.name  "DealRadar Bot"
+          git config user.email "bot@dealpulses.com"
+
+          # Stage only the site-facing output files
+          git add deals.json
+          [ -d price_history ] && git add price_history/
+
+          # Only commit if something actually changed
+          if git diff --staged --quiet; then
+            echo "ℹ️  No changes to deals.json — skipping commit"
+          else
+            DEAL_COUNT=$(jq length deals.json 2>/dev/null || echo "?")
+            git commit -m "🤖 DealRadar: refresh deals.json (${DEAL_COUNT} deals) [skip ci]"
+            git push
+            echo "🚀 Pushed — Netlify will redeploy automatically"
+          fi
+
+      # ── 8. Upload DealRadar log as artifact (for debugging) ───
+      - name: Upload scan log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dealradar-log-${{ github.run_number }}
+          path: dealradar/dealradar.log
+          retention-days: 7
+          if-no-files-found: ignore

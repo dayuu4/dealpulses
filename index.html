@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name='impact-site-verification' value='1d92ac3f-0703-4be5-9d00-220e84459ac2'>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1560202170907206" crossorigin="anonymous"></script>
+<title>DealPulses — Tech Deals, Bank Bonuses & More</title>
+<style>
+  /* ── Reset & Base ─────────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue:    #1A73E8;
+    --blue-d:  #1558B0;
+    --orange:  #FF6B00;
+    --dark:    #1E1E2E;
+    --grey:    #556;
+    --light:   #F0F4FF;
+    --white:   #FFFFFF;
+    --green:   #00A86B;
+    --red:     #E53935;
+    --border:  #E2E8F0;
+    --radius:  10px;
+    --shadow:  0 2px 12px rgba(0,0,0,.08);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #F7F9FC;
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* ── Top ticker bar ───────────────────────────────────────────────────── */
+  .ticker-bar {
+    background: var(--dark);
+    color: #CCC;
+    font-size: 12px;
+    padding: 6px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 40s linear infinite;
+  }
+  .ticker-inner span { margin-right: 60px; }
+  .ticker-inner .hot { color: var(--orange); font-weight: 700; }
+  @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+  /* ── Header ───────────────────────────────────────────────────────────── */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: var(--shadow);
+  }
+  .header-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 12px 20px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .logo {
+    font-size: 26px; font-weight: 800;
+    color: var(--blue);
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+  .logo span { color: var(--orange); }
+  .search-bar {
+    flex: 1;
+    display: flex;
+    background: var(--light);
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    overflow: hidden;
+    max-width: 520px;
+  }
+  .search-bar input {
+    flex: 1; border: none; background: transparent;
+    padding: 9px 16px; font-size: 14px; outline: none; color: var(--dark);
+  }
+  .search-bar button {
+    background: var(--blue); border: none; cursor: pointer;
+    padding: 0 18px; color: var(--white); font-size: 16px;
+    transition: background .2s;
+  }
+  .search-bar button:hover { background: var(--blue-d); }
+  .header-actions { display: flex; gap: 10px; margin-left: auto; }
+  .btn {
+    padding: 8px 18px; border-radius: 50px; font-size: 13px;
+    font-weight: 600; cursor: pointer; border: none; transition: .2s;
+  }
+  .btn-outline {
+    background: transparent; border: 1.5px solid var(--blue);
+    color: var(--blue);
+  }
+  .btn-outline:hover { background: var(--blue); color: var(--white); }
+  .btn-primary { background: var(--blue); color: var(--white); }
+  .btn-primary:hover { background: var(--blue-d); }
+  .btn-orange { background: var(--orange); color: var(--white); }
+  .btn-orange:hover { background: #e05c00; }
+
+  /* ── Nav ──────────────────────────────────────────────────────────────── */
+  nav {
+    background: var(--dark);
+    padding: 0 20px;
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; gap: 0; overflow-x: auto;
+  }
+  .nav-inner a {
+    color: #CCC; font-size: 13px; font-weight: 500;
+    padding: 11px 16px; white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: .2s;
+  }
+  .nav-inner a:hover, .nav-inner a.active {
+    color: var(--white);
+    border-bottom-color: var(--orange);
+  }
+  .nav-inner .badge {
+    background: var(--red); color: #fff;
+    font-size: 10px; font-weight: 700;
+    padding: 1px 5px; border-radius: 4px;
+    margin-left: 4px; vertical-align: middle;
+  }
+
+  /* ── Layout ───────────────────────────────────────────────────────────── */
+  .page {
+    max-width: 1280px; margin: 0 auto;
+    padding: 24px 20px;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+  }
+  @media(max-width:900px){ .page{grid-template-columns:1fr;} }
+
+  /* ── Hero banner ──────────────────────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, var(--blue) 0%, #0D47A1 100%);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    color: var(--white);
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 16px;
+  }
+  .hero h1 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+  .hero p  { font-size: 14px; opacity: .85; max-width: 460px; }
+  .hero-stats {
+    display: flex; gap: 24px; flex-shrink: 0;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 800; }
+  .stat-lbl { font-size: 11px; opacity: .75; text-transform: uppercase; letter-spacing: .5px; }
+
+  /* ── Section titles ───────────────────────────────────────────────────── */
+  .section-hd {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .section-hd h2 {
+    font-size: 17px; font-weight: 700; color: var(--dark);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-hd h2 .icon { font-size: 18px; }
+  .see-all { font-size: 13px; color: var(--blue); font-weight: 600; }
+  .see-all:hover { text-decoration: underline; }
+
+  /* ── Deal cards ───────────────────────────────────────────────────────── */
+  .deal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .deal-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform .18s, box-shadow .18s;
+    cursor: pointer;
+    position: relative;
+  }
+  .deal-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(26,115,232,.13);
+    border-color: var(--blue);
+  }
+  .deal-card .badge-hot {
+    position: absolute; top: 10px; left: 10px;
+    background: var(--red); color: var(--white);
+    font-size: 11px; font-weight: 700; padding: 3px 8px;
+    border-radius: 4px; letter-spacing: .3px;
+  }
+  .deal-card .badge-new {
+    position: absolute; top: 10px; left: 10px;
+    background: var(--green); color: var(--white);
+    font-size: 11px; font-weight: 700; padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .deal-card .badge-exp {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(0,0,0,.55); color: var(--white);
+    font-size: 10px; padding: 3px 7px; border-radius: 4px;
+  }
+  .deal-img {
+    width: 100%; height: 140px;
+    background: var(--light);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .deal-img img {
+    width: 100%; height: 100%;
+    object-fit: contain; object-position: center;
+    padding: 8px; box-sizing: border-box;
+  }
+  .deal-body { padding: 12px 14px; }
+  .deal-store {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .6px;
+    color: var(--blue); font-weight: 700; margin-bottom: 4px;
+  }
+  .deal-title {
+    font-size: 13px; font-weight: 600; color: var(--dark);
+    line-height: 1.4; margin-bottom: 8px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .deal-price-row {
+    display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px;
+  }
+  .deal-price-now { font-size: 20px; font-weight: 800; color: var(--dark); }
+  .deal-price-was {
+    font-size: 13px; color: #AAA; text-decoration: line-through;
+  }
+  .deal-discount {
+    margin-left: auto;
+    background: #FFF0E6; color: var(--orange);
+    font-size: 12px; font-weight: 700; padding: 2px 7px; border-radius: 4px;
+  }
+  .deal-meta {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px; color: #AAA;
+  }
+  .deal-meta .upvote { color: var(--green); font-weight: 600; }
+  .deal-meta .comments { color: var(--blue); }
+  .deal-footer {
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-get {
+    flex: 1; text-align: center; padding: 8px;
+    background: var(--blue); color: var(--white);
+    border-radius: 6px; font-size: 13px; font-weight: 600;
+    transition: background .15s;
+  }
+  .btn-get:hover { background: var(--blue-d); }
+  .btn-save {
+    padding: 8px 10px; background: var(--light);
+    border-radius: 6px; font-size: 16px; cursor: pointer;
+    border: 1px solid var(--border); transition: .15s;
+  }
+  .btn-save:hover { background: #FFECD9; border-color: var(--orange); }
+
+  /* ── Filter tabs ──────────────────────────────────────────────────────── */
+  .filter-tabs {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .filter-tab {
+    padding: 6px 14px; border-radius: 20px; font-size: 13px;
+    cursor: pointer; border: 1.5px solid var(--border);
+    background: var(--white); color: var(--grey); font-weight: 500;
+    transition: .15s;
+  }
+  .filter-tab:hover, .filter-tab.active {
+    background: var(--blue); color: var(--white); border-color: var(--blue);
+  }
+
+  /* ── Bank Bonus cards ─────────────────────────────────────────────────── */
+  .bonus-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .bonus-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 14px 16px;
+    display: flex; align-items: center; gap: 14px;
+    transition: .18s; cursor: pointer;
+  }
+  .bonus-card:hover { border-color: var(--blue); box-shadow: var(--shadow); }
+  .bonus-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+  }
+  .bonus-info { flex: 1; }
+  .bonus-bank { font-size: 13px; font-weight: 700; color: var(--dark); }
+  .bonus-desc { font-size: 12px; color: var(--grey); margin-top: 2px; }
+  .bonus-tags { display: flex; gap: 5px; margin-top: 5px; }
+  .tag {
+    font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 600;
+  }
+  .tag-green { background: #E8F8F1; color: var(--green); }
+  .tag-blue  { background: #E8F0FE; color: var(--blue);  }
+  .tag-orange{ background: #FFF3E0; color: var(--orange); }
+  .bonus-amount {
+    font-size: 22px; font-weight: 800; color: var(--green); flex-shrink: 0;
+  }
+  .bonus-amount span { font-size: 11px; font-weight: 500; color: var(--grey); display:block; text-align:right; }
+
+  /* ── News cards ───────────────────────────────────────────────────────── */
+  .news-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .news-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 14px 16px;
+    display: flex; gap: 14px; cursor: pointer; transition: .15s;
+  }
+  .news-card:hover { border-color: var(--blue); }
+  .news-thumb {
+    width: 70px; height: 60px; border-radius: 8px;
+    background: var(--light); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+  }
+  .news-info { flex: 1; }
+  .news-cat {
+    font-size: 10px; text-transform: uppercase; letter-spacing: .5px;
+    font-weight: 700; color: var(--orange); margin-bottom: 3px;
+  }
+  .news-title { font-size: 13px; font-weight: 600; color: var(--dark); line-height: 1.4; }
+  .news-meta { font-size: 11px; color: #AAA; margin-top: 5px; }
+
+  /* ── Sidebar ──────────────────────────────────────────────────────────── */
+  .sidebar { display: flex; flex-direction: column; gap: 20px; }
+  .sidebar-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .sidebar-card-hd {
+    background: var(--dark); padding: 12px 16px;
+    font-size: 13px; font-weight: 700; color: var(--white);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .sidebar-card-body { padding: 14px 16px; }
+
+  /* Alert signup */
+  .alert-form input {
+    width: 100%; border: 1.5px solid var(--border); border-radius: 6px;
+    padding: 9px 12px; font-size: 13px; margin-bottom: 8px; outline: none;
+    color: var(--dark);
+  }
+  .alert-form input:focus { border-color: var(--blue); }
+  .alert-form .btn-full {
+    width: 100%; padding: 10px; border-radius: 6px; border: none;
+    background: var(--orange); color: var(--white);
+    font-size: 13px; font-weight: 700; cursor: pointer;
+    transition: .15s;
+  }
+  .alert-form .btn-full:hover { background: #e05c00; }
+
+  /* Trending list */
+  .trending-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+  }
+  .trending-item:last-child { border-bottom: none; }
+  .trend-rank {
+    width: 24px; height: 24px; border-radius: 6px;
+    background: var(--light); color: var(--blue);
+    font-size: 12px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .trend-rank.gold { background: #FFF3CD; color: #B7791F; }
+  .trend-rank.silver { background: #F0F0F0; color: #666; }
+  .trend-rank.bronze { background: #FFF0E6; color: #C05621; }
+  .trend-title { font-size: 12px; font-weight: 600; color: var(--dark); flex: 1; line-height: 1.3; }
+  .trend-up { font-size: 11px; color: var(--green); font-weight: 700; }
+
+  /* Timer widget */
+  .flash-deal {
+    background: linear-gradient(135deg, #FF6B00, #FF3D00);
+    border-radius: var(--radius); padding: 16px;
+    color: var(--white); text-align: center; margin-bottom: 20px;
+  }
+  .flash-deal h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .flash-deal .deal-name { font-size: 13px; font-weight: 600; margin-bottom: 10px; opacity: .9; }
+  .timer { display: flex; justify-content: center; gap: 8px; margin-bottom: 12px; }
+  .timer-unit { text-align: center; }
+  .timer-num { font-size: 28px; font-weight: 800; line-height: 1; }
+  .timer-lbl { font-size: 10px; opacity: .75; text-transform: uppercase; }
+  .timer-sep { font-size: 28px; font-weight: 800; line-height: 1.1; opacity: .6; }
+
+  /* Stats strip */
+  .stats-strip {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-bottom: 20px;
+  }
+  .stat-tile {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 14px; text-align: center;
+  }
+  .stat-tile .num { font-size: 22px; font-weight: 800; color: var(--blue); }
+  .stat-tile .lbl { font-size: 11px; color: var(--grey); margin-top: 2px; }
+
+  /* ── Footer ───────────────────────────────────────────────────────────── */
+  footer {
+    background: var(--dark); color: #AAA;
+    margin-top: 40px; padding: 40px 20px 20px;
+  }
+  .footer-inner { max-width: 1280px; margin: 0 auto; }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 32px; margin-bottom: 32px;
+  }
+  @media(max-width:700px){ .footer-grid{grid-template-columns:1fr 1fr;} }
+  .footer-brand .logo { font-size: 22px; margin-bottom: 10px; display: block; }
+  .footer-brand p { font-size: 13px; line-height: 1.6; }
+  .footer-col h4 { color: var(--white); font-size: 13px; font-weight: 700; margin-bottom: 10px; }
+  .footer-col a { display: block; font-size: 13px; color: #AAA; margin-bottom: 6px; transition: .15s; }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    border-top: 1px solid #333; padding-top: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; flex-wrap: wrap; gap: 10px;
+  }
+  .social-links { display: flex; gap: 10px; }
+  .social-links a {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: #333; color: #CCC;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; transition: .15s;
+  }
+  .social-links a:hover { background: var(--blue); color: var(--white); }
+
+  /* ── Notification toast ───────────────────────────────────────────────── */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    background: var(--dark); color: var(--white);
+    padding: 14px 20px; border-radius: var(--radius);
+    font-size: 13px; font-weight: 600;
+    box-shadow: 0 8px 30px rgba(0,0,0,.25);
+    border-left: 4px solid var(--green);
+    transform: translateY(100px); opacity: 0;
+    transition: .4s cubic-bezier(.175,.885,.32,1.1);
+    max-width: 300px;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── Pulse animation for HOT badge ───────────────────────────────────── */
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+  .live { animation: pulse 1.5s ease-in-out infinite; }
+
+  /* ── Expired deal card ────────────────────────────────────────────────── */
+  .deal-card.expired { opacity: 0.55; }
+  .deal-card.expired .deal-img { position: relative; }
+  .deal-card.expired .deal-img::after {
+    content: '⏱ EXPIRED';
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.42);
+    color: #fff; font-size: 13px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    letter-spacing: 1px;
+  }
+  .deal-card.expired .btn-get { background: #999; pointer-events: none; }
+  .badge-expired-card {
+    position: absolute; top: 10px; left: 10px;
+    background: #666; color: #fff;
+    font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Ticker ─────────────────────────────────────────────────────────────── -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <span>🔥 <b class="hot">HOT:</b> ASUS ROG Zephyrus G14 OLED Gaming Laptop — $1,480.99 at Best Buy (Open Box)</span>
+    <span>💳 Chase Marriott Bonvoy Boundless — <b class="hot">50,000 Points</b> after $3K spend</span>
+    <span>🎧 Razer BlackShark V2 Pro Wireless Gaming Headset — $79.99 at Amazon</span>
+    <span>💰 Chase Ultimate Rewards — <b class="hot">30% Transfer Bonus</b> to Wyndham Rewards</span>
+    <span>📱 Samsung Galaxy S26 Pre-Order — Up to $900 off + <b class="hot">$180 store credit</b></span>
+    <span>💻 M4 MacBook Air — Up to <b class="hot">$300 off</b> at Amazon (All-Time Low)</span>
+    <span>🖥 49" MSI MPG QD-OLED 1440p 240Hz Ultrawide Monitor — $900 at Amazon</span>
+    <span>🎬 Disney+ &amp; Hulu Bundle with Ads — <b class="hot">$4.99/mo</b> for 3 months</span>
+    <!-- duplicate for seamless loop -->
+    <span>🔥 <b class="hot">HOT:</b> ASUS ROG Zephyrus G14 OLED Gaming Laptop — $1,480.99 at Best Buy (Open Box)</span>
+    <span>💳 Chase Marriott Bonvoy Boundless — <b class="hot">50,000 Points</b> after $3K spend</span>
+    <span>🎧 Razer BlackShark V2 Pro Wireless Gaming Headset — $79.99 at Amazon</span>
+    <span>💰 Chase Ultimate Rewards — <b class="hot">30% Transfer Bonus</b> to Wyndham Rewards</span>
+    <span>📱 Samsung Galaxy S26 Pre-Order — Up to $900 off + <b class="hot">$180 store credit</b></span>
+    <span>💻 M4 MacBook Air — Up to <b class="hot">$300 off</b> at Amazon (All-Time Low)</span>
+    <span>🖥 49" MSI MPG QD-OLED 1440p 240Hz Ultrawide Monitor — $900 at Amazon</span>
+    <span>🎬 Disney+ &amp; Hulu Bundle with Ads — <b class="hot">$4.99/mo</b> for 3 months</span>
+  </div>
+</div>
+
+<!-- ── Header ─────────────────────────────────────────────────────────────── -->
+<header>
+  <div class="header-inner">
+    <div class="logo">Deal<span>Pulses</span></div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search deals, stores, bank bonuses…" id="searchInput" />
+      <button onclick="doSearch()">🔍</button>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-outline" onclick="showToast('Login coming soon!')">Log In</button>
+      <button class="btn btn-orange" onclick="showToast('Sign-up coming soon!')">Join Free</button>
+    </div>
+  </div>
+</header>
+
+<!-- ── Nav ────────────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="active">🏠 Home</a>
+    <a href="#tech">💻 Tech & Gadgets <span class="badge">47</span></a>
+    <a href="#bonuses">💳 Bank Bonuses <span class="badge live" style="background:var(--green)">LIVE</span></a>
+    <a href="#deals">🛒 All Deals</a>
+    <a href="#news">📰 News & Updates</a>
+    <a href="#travel">✈️ Travel</a>
+    <a href="#software">🖥 Software</a>
+    <a href="#alerts">🔔 My Alerts</a>
+  </div>
+</nav>
+
+<!-- ── Main content ───────────────────────────────────────────────────────── -->
+<div class="page">
+  <main>
+
+    <!-- Hero -->
+    <div class="hero">
+      <div>
+        <h1>Find the Best Deals. Claim Every Bonus. Stay Ahead.</h1>
+        <p>Real-time tech deals, bank bonuses, and money news — all in one place. Powered by our DealRadar™ engine and community of 50,000+ deal hunters.</p>
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-orange" onclick="showToast('Alert set! We\'ll email you hot deals.')">🔔 Get Deal Alerts</button>
+          <button class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:white;" onclick="showToast('Submitting a deal — coming soon!')">+ Submit a Deal</button>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">247</div>
+          <div class="stat-lbl">Live Deals</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">38</div>
+          <div class="stat-lbl">Bank Bonuses</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">$1.2M</div>
+          <div class="stat-lbl">Saved Today</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flash Deal Timer -->
+    <div class="flash-deal">
+      <h3>⚡ Flash Deal — Ending Soon</h3>
+      <div class="deal-name">Under Armour Extra 50% Off Select Outlet Items — <b>Free Shipping on $50+</b></div>
+      <div class="timer">
+        <div class="timer-unit">
+          <div class="timer-num" id="hours">01</div>
+          <div class="timer-lbl">Hours</div>
+        </div>
+        <div class="timer-sep">:</div>
+        <div class="timer-unit">
+          <div class="timer-num" id="mins">47</div>
+          <div class="timer-lbl">Mins</div>
+        </div>
+        <div class="timer-sep">:</div>
+        <div class="timer-unit">
+          <div class="timer-num" id="secs">33</div>
+          <div class="timer-lbl">Secs</div>
+        </div>
+      </div>
+      <a href="https://www.underarmour.com/en-us/c/mens-outlet/" target="_blank" rel="nofollow sponsored" onclick="showToast('Redirecting to Under Armour...')">
+        <button style="background:white;color:#FF6B00;border:none;padding:10px 28px;border-radius:6px;font-weight:800;font-size:14px;cursor:pointer;">
+          Shop 50% Off →
+        </button>
+      </a>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="stats-strip">
+      <div class="stat-tile"><div class="num">$847</div><div class="lbl">Avg. user savings / year</div></div>
+      <div class="stat-tile"><div class="num">4.2min</div><div class="lbl">Avg. deal freshness</div></div>
+    </div>
+
+    <!-- ── Tech & Gadgets ──────────────────────────────────────────────── -->
+    <section id="tech">
+      <div class="section-hd">
+        <h2><span class="icon">💻</span> Hot Tech & Gadget Deals</h2>
+        <a href="#" class="see-all" id="see-all-count">See all 60 →</a>
+      </div>
+
+      <div class="filter-tabs" id="techFilters">
+        <!-- populated dynamically by loadDeals() -->
+      </div>
+
+      <div class="deal-grid" id="deal-grid">
+        <div style="text-align:center;padding:48px;color:#888;font-size:15px">Loading deals…</div>
+      </div>
+    </section>
+
+    <!-- ── Bank Bonuses ─────────────────────────────────────────────────── -->
+    <section id="bonuses">
+      <div class="section-hd">
+        <h2><span class="icon">💳</span> Top Bank & Credit Card Bonuses</h2>
+        <a href="#" class="see-all">See all 38 bonuses →</a>
+      </div>
+      <div class="bonus-list">
+
+        <div class="bonus-card" onclick="window.open('https://account.chase.com/consumer/banking/start','_blank')" style="cursor:pointer;">
+          <div class="bonus-icon" style="background:#1A3A8F20;">🏦</div>
+          <div class="bonus-info">
+            <div class="bonus-bank">Chase Total Checking®</div>
+            <div class="bonus-desc">Open new account + set up qualifying direct deposit within 90 days. No minimum balance required. Nationwide availability.</div>
+            <div class="bonus-tags">
+              <span class="tag tag-green">No Min Balance</span>
+              <span class="tag tag-blue">Direct Deposit Required</span>
+              <span class="tag tag-orange">Offer: Limited Time</span>
+            </div>
+          </div>
+          <div class="bonus-amount">$300 <span>Cash Bonus</span></div>
+        </div>
+
+        <div class="bonus-card" onclick="window.open('https://www.citi.com/promotions/dynamic/en/checking/','_blank')" style="cursor:pointer;">
+          <div class="bonus-icon" style="background:#E8F0FE;">💙</div>
+          <div class="bonus-info">
+            <div class="bonus-bank">Citibank — Priority Checking</div>
+            <div class="bonus-desc">Open new checking account and maintain $30K–$300K+ balance for 60 days. Tiered bonuses available at multiple deposit levels.</div>
+            <div class="bonus-tags">
+              <span class="tag tag-blue">$30K Min Deposit</span>
+              <span class="tag tag-green">Tiered Rewards</span>
+              <span class="tag tag-orange">60-Day Holding</span>
+            </div>
+          </div>
+          <div class="bonus-amount">$700 <span>Cash Bonus</span></div>
+        </div>
+
+        <div class="bonus-card" onclick="window.open('https://www.wellsfargo.com/checking/everyday-checking/','_blank')" style="cursor:pointer;">
+          <div class="bonus-icon" style="background:#FFF3CD;">🟡</div>
+          <div class="bonus-info">
+            <div class="bonus-bank">Wells Fargo Everyday Checking</div>
+            <div class="bonus-desc">Open a new account online and receive qualifying direct deposits totaling $1,000+ within 90 days. Available in eligible states.</div>
+            <div class="bonus-tags">
+              <span class="tag tag-green">$1K Direct Deposit</span>
+              <span class="tag tag-blue">No Min Balance</span>
+              <span class="tag tag-orange">New Customers Only</span>
+            </div>
+          </div>
+          <div class="bonus-amount">$300 <span>Cash Bonus</span></div>
+        </div>
+
+        <div class="bonus-card" onclick="window.open('https://www.sofi.com/banking/','_blank')" style="cursor:pointer;">
+          <div class="bonus-icon" style="background:#E8F8F1;">💚</div>
+          <div class="bonus-info">
+            <div class="bonus-bank">SoFi Checking + Savings</div>
+            <div class="bonus-desc">Set up monthly direct deposit of $1,000+ to unlock bonus and earn industry-leading 4.60% APY on savings. FDIC insured up to $2M.</div>
+            <div class="bonus-tags">
+              <span class="tag tag-green">4.60% APY</span>
+              <span class="tag tag-blue">$1K DD Required</span>
+              <span class="tag tag-orange">FDIC Insured $2M</span>
+            </div>
+          </div>
+          <div class="bonus-amount">$300 <span>+ Up to $325 Referral</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── News & Updates ──────────────────────────────────────────────── -->
+    <section id="news">
+      <div class="section-hd">
+        <h2><span class="icon">📰</span> Latest News & Updates</h2>
+        <a href="#" class="see-all">See all news →</a>
+      </div>
+      <div class="news-list">
+
+        <div class="news-card" onclick="window.open('https://9to5mac.com/2025/03/12/m4-macbook-air-review/','_blank')" style="cursor:pointer;">
+          <div class="news-thumb">💻</div>
+          <div class="news-info">
+            <div class="news-cat">Tech News</div>
+            <div class="news-title">M4 MacBook Air Hits All-Time Low — Best Laptop Deal of 2026 So Far</div>
+            <div class="news-meta">Via 9to5Mac · Today · 4 min read</div>
+          </div>
+        </div>
+
+        <div class="news-card" onclick="window.open('https://www.doctorofcredit.com/best-bank-account-bonuses/','_blank')" style="cursor:pointer;">
+          <div class="news-thumb">💳</div>
+          <div class="news-info">
+            <div class="news-cat">Bank Bonuses</div>
+            <div class="news-title">Best Bank Bonuses This Week: Chase $300, Citi $700, Wells Fargo $300 + More</div>
+            <div class="news-meta">Via Doctor of Credit · Today · 6 min read</div>
+          </div>
+        </div>
+
+        <div class="news-card" onclick="window.open('https://www.nintendo.com/us/switch/switch2/','_blank')" style="cursor:pointer;">
+          <div class="news-thumb">🎮</div>
+          <div class="news-info">
+            <div class="news-cat">Gaming</div>
+            <div class="news-title">Nintendo Switch 2 Pre-Order Guide — Price, Launch Date & Best Bundles to Watch</div>
+            <div class="news-meta">Via 9to5Toys · Today · 3 min read</div>
+          </div>
+        </div>
+
+        <div class="news-card" onclick="window.open('https://www.disneyplus.com/en-us/subscribe','_blank')" style="cursor:pointer;">
+          <div class="news-thumb">📺</div>
+          <div class="news-info">
+            <div class="news-cat">Streaming Deals</div>
+            <div class="news-title">Disney+/Hulu Bundle $4.99/mo, Max $2.99 Promo — Best Streaming Deals Right Now</div>
+            <div class="news-meta">Via Slickdeals · Today · 5 min read</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Sidebar ─────────────────────────────────────────────────────────── -->
+  <aside class="sidebar">
+
+    <!-- Alert Signup -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-hd">🔔 Get Instant Deal Alerts</div>
+      <div class="sidebar-card-body">
+        <p style="font-size:12px;color:var(--grey);margin-bottom:12px;">
+          Be first to know when prices drop. Choose your categories.
+        </p>
+        <div class="alert-form">
+          <input type="email" placeholder="your@email.com" id="alertEmail" />
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
+            <span class="tag tag-blue" style="cursor:pointer" onclick="this.classList.toggle('tag-orange')">💻 Tech</span>
+            <span class="tag tag-blue" style="cursor:pointer" onclick="this.classList.toggle('tag-orange')">💳 Bonuses</span>
+            <span class="tag tag-blue" style="cursor:pointer" onclick="this.classList.toggle('tag-orange')">✈️ Travel</span>
+            <span class="tag tag-blue" style="cursor:pointer" onclick="this.classList.toggle('tag-orange')">🛒 All</span>
+          </div>
+          <button class="btn-full" onclick="signupAlert()">Subscribe — It's Free</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trending Today -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-hd">🔥 Trending Today</div>
+      <div class="sidebar-card-body">
+        <div class="trending-item" onclick="window.location.href='deal.html?id=asus-rog-g14'" style="cursor:pointer;">
+          <div class="trend-rank gold">1</div>
+          <div class="trend-title">ASUS ROG Zephyrus G14 — $1,480.99 Open Box (Best Buy)</div>
+          <div class="trend-up">▲ 2.1K</div>
+        </div>
+        <div class="trending-item" onclick="window.location.href='deal.html?id=razer-blackshark-v2-pro'" style="cursor:pointer;">
+          <div class="trend-rank silver">2</div>
+          <div class="trend-title">Razer BlackShark V2 Pro — $79.99 at Amazon</div>
+          <div class="trend-up">▲ 1.6K</div>
+        </div>
+        <div class="trending-item" onclick="window.open('https://account.chase.com/consumer/banking/start','_blank')" style="cursor:pointer;">
+          <div class="trend-rank bronze">3</div>
+          <div class="trend-title">Chase Marriott Bonvoy — 50,000 Bonus Points</div>
+          <div class="trend-up">▲ 1.4K</div>
+        </div>
+        <div class="trending-item" onclick="window.location.href='deal.html?id=msi-mpg-491cqpx'" style="cursor:pointer;">
+          <div class="trend-rank">4</div>
+          <div class="trend-title">49" MSI MPG QD-OLED Monitor — $900 at Amazon</div>
+          <div class="trend-up">▲ 1.1K</div>
+        </div>
+        <div class="trending-item" onclick="window.location.href='deal.html?id=apple-watch-se2'" style="cursor:pointer;">
+          <div class="trend-rank">5</div>
+          <div class="trend-title">Apple Watch SE 2 — $101 on eBay</div>
+          <div class="trend-up">▲ 980</div>
+        </div>
+        <div class="trending-item" onclick="window.open('https://www.underarmour.com/en-us/c/mens-outlet/','_blank')" style="cursor:pointer;">
+          <div class="trend-rank">6</div>
+          <div class="trend-title">Under Armour Outlet — Extra 50% Off Sitewide</div>
+          <div class="trend-up">▲ 847</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DealPulses Pro -->
+    <div class="sidebar-card" style="border-color:var(--orange);">
+      <div class="sidebar-card-hd" style="background:linear-gradient(135deg,#FF6B00,#FF3D00);">⚡ DealPulses Pro</div>
+      <div class="sidebar-card-body">
+        <p style="font-size:12px;color:var(--grey);margin-bottom:12px;">
+          Get deals <b>15 minutes before everyone else</b>, ad-free browsing, and advanced alerts.
+        </p>
+        <ul style="font-size:12px;color:var(--grey);padding-left:16px;margin-bottom:14px;line-height:2;">
+          <li>⚡ Early deal access (15-min head start)</li>
+          <li>🚫 Zero ads, zero distractions</li>
+          <li>📊 Exclusive bank bonus research</li>
+          <li>🔔 Unlimited custom alerts</li>
+        </ul>
+        <button onclick="showToast('Pro plan launching soon — join the waitlist!')"
+          style="width:100%;padding:10px;border-radius:6px;border:none;
+                 background:var(--orange);color:white;font-weight:700;
+                 font-size:13px;cursor:pointer;">
+          Start Free 7-Day Trial →
+        </button>
+        <p style="font-size:11px;color:#AAA;text-align:center;margin-top:8px;">$4.99/mo · Cancel anytime</p>
+      </div>
+    </div>
+
+    <!-- Store Links -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-hd">🏪 Browse By Store</div>
+      <div class="sidebar-card-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <a href="#" onclick="showToast('Filtering by Amazon...');return false;"
+            style="background:var(--light);border:1px solid var(--border);border-radius:8px;
+                   padding:10px;text-align:center;font-size:12px;font-weight:600;
+                   color:var(--dark);transition:.15s;"
+            onmouseover="this.style.borderColor='var(--blue)'"
+            onmouseout="this.style.borderColor='var(--border)'">🛒 Amazon</a>
+          <a href="#" onclick="showToast('Filtering by Best Buy...');return false;"
+            style="background:var(--light);border:1px solid var(--border);border-radius:8px;
+                   padding:10px;text-align:center;font-size:12px;font-weight:600;
+                   color:var(--dark);transition:.15s;"
+            onmouseover="this.style.borderColor='var(--blue)'"
+            onmouseout="this.style.borderColor='var(--border)'">💻 Best Buy</a>
+          <a href="#" onclick="showToast('Filtering by Walmart...');return false;"
+            style="background:var(--light);border:1px solid var(--border);border-radius:8px;
+                   padding:10px;text-align:center;font-size:12px;font-weight:600;
+                   color:var(--dark);transition:.15s;"
+            onmouseover="this.style.borderColor='var(--blue)'"
+            onmouseout="this.style.borderColor='var(--border)'">🏪 Walmart</a>
+          <a href="#" onclick="showToast('Filtering by Newegg...');return false;"
+            style="background:var(--light);border:1px solid var(--border);border-radius:8px;
+                   padding:10px;text-align:center;font-size:12px;font-weight:600;
+                   color:var(--dark);transition:.15s;"
+            onmouseover="this.style.borderColor='var(--blue)'"
+            onmouseout="this.style.borderColor='var(--border)'">🖥 Newegg</a>
+          <a href="#" onclick="showToast('Filtering by B&H...');return false;"
+            style="background:var(--light);border:1px solid var(--border);border-radius:8px;
+                   padding:10px;text-align:center;font-size:12px;font-weight:600;
+                   color:var(--dark);transition:.15s;"
+            onmouseover="this.style.borderColor='var(--blue)'"
+            onmouseout="this.style.borderColor='var(--border)'">📷 B&H</a>
+          <a href="#" onclick="showToast('Filtering by Target...');return false;"
+            style="background:var(--light);border:1px solid var(--border);border-radius:8px;
+                   padding:10px;text-align:center;font-size:12px;font-weight:600;
+                   color:var(--dark);transition:.15s;"
+            onmouseover="this.style.borderColor='var(--blue)'"
+            onmouseout="this.style.borderColor='var(--border)'">🎯 Target</a>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ── Footer ──────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">Deal<span>Pulses</span></span>
+        <p>The fastest destination for deal hunters and bonus chasers. Real-time tech deals, bank bonuses, and money news — all in one place.</p>
+        <div class="social-links" style="margin-top:14px;">
+          <a href="#" onclick="showToast('Twitter/X coming soon!');return false;">𝕏</a>
+          <a href="#" onclick="showToast('TikTok coming soon!');return false;">📱</a>
+          <a href="#" onclick="showToast('YouTube coming soon!');return false;">▶</a>
+          <a href="#" onclick="showToast('Reddit coming soon!');return false;">🤖</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <a href="#">💻 Tech & Gadgets</a>
+        <a href="#">💳 Bank Bonuses</a>
+        <a href="#">✈️ Travel Deals</a>
+        <a href="#">🖥 Software</a>
+        <a href="#">🏠 Smart Home</a>
+        <a href="#">📱 Phones</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About DealPulses</a>
+        <a href="about.html#how-it-works">How We Work</a>
+        <a href="about.html#affiliate">Affiliate Disclosure</a>
+        <a href="about.html#contact">Contact Us</a>
+        <a href="#">Press / Media</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="#">Price History</a>
+        <a href="#">Deal Alerts</a>
+        <a href="#">Browser Extension</a>
+        <a href="#">DealPulses Pro</a>
+        <a href="#">Submit a Deal</a>
+        <a href="#">Newsletter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DealPulses. All rights reserved. Affiliate disclosure: we may earn commissions on deals.</span>
+      <span>
+        <a href="privacy.html" style="color:#AAA;margin-right:12px;">Privacy Policy</a>
+        <a href="privacy.html#terms" style="color:#AAA;margin-right:12px;">Terms of Use</a>
+        <a href="about.html#contact" style="color:#AAA;">Contact Us</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Toast notification ─────────────────────────────────────────────────── -->
+<div class="toast" id="toast"></div>
+
+<!-- ── JavaScript ─────────────────────────────────────────────────────────── -->
+<script>
+  // Toast
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = '✓ ' + msg;
+    t.classList.add('show');
+    clearTimeout(t._timeout);
+    t._timeout = setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // ── Search ────────────────────────────────────────────────────────────
+  function doSearch() {
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    const grid = document.getElementById('deal-grid');
+
+    // Empty query → restore active filter view
+    if (!q) {
+      renderGrid(_activeFilter);
+      return;
+    }
+
+    // Filter across title, store, and category
+    const results = _allDeals.filter(d =>
+      d.title.toLowerCase().includes(q) ||
+      d.store.toLowerCase().includes(q) ||
+      d.category.toLowerCase().includes(q)
+    );
+
+    grid.innerHTML = '';
+
+    if (results.length === 0) {
+      grid.innerHTML = `<div style="text-align:center;padding:48px;color:#888">
+        No deals found for <b>"${document.getElementById('searchInput').value.trim()}"</b>.
+        <br><span style="font-size:13px;margin-top:8px;display:block">Try searching for a brand, store, or category.</span>
+      </div>`;
+      return;
+    }
+
+    // Reset filter tab highlight to "All" during search
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    const allTab = document.querySelector('#techFilters .filter-tab');
+    if (allTab) allTab.classList.add('active');
+
+    results.forEach(deal => grid.appendChild(buildCard(deal)));
+
+    // Scroll deals into view smoothly
+    document.getElementById('tech').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Search on Enter key or button click
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doSearch();
+  });
+  // Clear search when input is emptied
+  document.getElementById('searchInput').addEventListener('input', e => {
+    if (!e.target.value.trim()) renderGrid(_activeFilter);
+  });
+
+  // ── Dynamic deal grid loaded from deals.json ─────────────────────────
+  let _allDeals = [];
+  let _activeFilter = 'All';
+
+  function fmtPrice(n) {
+    return '$' + n.toLocaleString('en-US', {minimumFractionDigits: n % 1 === 0 ? 0 : 2, maximumFractionDigits: 2});
+  }
+  function fmtNum(n) {
+    return n >= 1000 ? (n/1000).toFixed(1).replace(/\.0$/,'') + 'K' : String(n);
+  }
+  function dayLabel(dateStr) {
+    const d = new Date(dateStr + 'T12:00:00');
+    const today = new Date(); today.setHours(12,0,0,0);
+    const diff = Math.round((today - d) / 86400000);
+    if (diff <= 0) return 'Today';
+    if (diff === 1) return '1 day ago';
+    return diff + ' days ago';
+  }
+
+  function buildCard(deal) {
+    const isExpired = deal.expired || deal.status === 'expired';
+    const badgeHtml = deal.badge === 'HOT'
+      ? '<span class="badge-hot">🔥 HOT</span>'
+      : deal.badge === 'NEW' ? '<span class="badge-new">✨ NEW</span>' : '';
+    const expiredBadgeHtml = isExpired ? '<span class="badge-expired-card">⏱ EXPIRED</span>' : '';
+
+    const card = document.createElement('div');
+    card.className = 'deal-card' + (isExpired ? ' expired' : '');
+    card.setAttribute('data-deal-id', deal.id);
+    card.setAttribute('data-category', deal.category);
+    card.onclick = () => window.location.href = 'deal.html?id=' + deal.id;
+
+    card.innerHTML = `
+      ${isExpired ? expiredBadgeHtml : badgeHtml}
+      <div class="deal-img">
+        <img src="${deal.image_url}" alt="${deal.title}" loading="lazy"
+             onerror="this.style.background='#eee';this.alt='Image unavailable'">
+      </div>
+      <div class="deal-body">
+        <div class="deal-store">${deal.store}</div>
+        <div class="deal-title">${deal.title}</div>
+        <div class="deal-price-row">
+          <span class="deal-price-now">${fmtPrice(deal.price)}</span>
+          <span class="deal-price-was">${fmtPrice(deal.original_price)}</span>
+          <span class="deal-discount">-${deal.discount_percent}%</span>
+        </div>
+        <div class="deal-meta">
+          <span class="upvote">▲ ${fmtNum(deal.upvotes)}</span>
+          <span class="comments">💬 ${fmtNum(deal.comment_count)}</span>
+          <span>• ${dayLabel(deal.posted_date)}</span>
+        </div>
+      </div>
+      <div class="deal-footer">
+        <a class="btn-get${isExpired ? '" style="background:#999;pointer-events:none' : ''}"
+           href="${deal.merchant_url}" target="_blank" rel="nofollow sponsored"
+           onclick="event.stopPropagation()">
+          ${isExpired ? 'Deal Ended' : 'Get Deal'}
+        </a>
+        <button class="btn-save" onclick="event.stopPropagation();showToast('Deal saved!')">🔖</button>
+      </div>`;
+    return card;
+  }
+
+  function renderGrid(filter) {
+    _activeFilter = filter || 'All';
+    const grid = document.getElementById('deal-grid');
+    grid.innerHTML = '';
+    const visible = _activeFilter === 'All'
+      ? _allDeals
+      : _allDeals.filter(d => d.category === _activeFilter);
+    if (visible.length === 0) {
+      grid.innerHTML = '<div style="text-align:center;padding:40px;color:#999">No deals in this category yet.</div>';
+      return;
+    }
+    visible.forEach(deal => grid.appendChild(buildCard(deal)));
+  }
+
+  function setFilter(el) {
+    el.closest('.filter-tabs').querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    renderGrid(el.textContent.trim());
+  }
+
+  function loadDeals() {
+    fetch('deals.json?_=' + Date.now())
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (!data || !data.deals) return;
+        _allDeals = data.deals;
+
+        // Build filter tabs from unique categories (preserve order)
+        const cats = ['All'];
+        const seen = new Set();
+        const catOrder = ['Laptops','Audio','Monitors','Gaming','Phones','TVs','Smart Home','PC Parts','Wearables','Accessories'];
+        catOrder.forEach(c => { if (!seen.has(c)) { cats.push(c); seen.add(c); } });
+        _allDeals.forEach(d => { if (!seen.has(d.category)) { cats.push(d.category); seen.add(d.category); } });
+
+        const tabsEl = document.getElementById('techFilters');
+        tabsEl.innerHTML = '';
+        cats.forEach(cat => {
+          const tab = document.createElement('div');
+          tab.className = 'filter-tab' + (cat === 'All' ? ' active' : '');
+          tab.textContent = cat;
+          tab.onclick = () => setFilter(tab);
+          tabsEl.appendChild(tab);
+        });
+
+        // Update "see all" count + nav badge
+        const countEl = document.getElementById('see-all-count');
+        if (countEl) countEl.textContent = 'All ' + _allDeals.length + ' deals →';
+        const navBadge = document.querySelector('.nav-inner a[href="#tech"] .badge');
+        if (navBadge) navBadge.textContent = _allDeals.length;
+
+        renderGrid('All');
+      })
+      .catch(() => {
+        document.getElementById('deal-grid').innerHTML =
+          '<div style="text-align:center;padding:40px;color:#c00">Could not load deals. Please refresh.</div>';
+      });
+  }
+
+  loadDeals();
+
+  // Alert signup
+  function signupAlert() {
+    const email = document.getElementById('alertEmail').value.trim();
+    if (!email || !email.includes('@')) {
+      showToast('Please enter a valid email address.');
+      return;
+    }
+    showToast('🎉 You\'re on the list! Deal alerts incoming.');
+    document.getElementById('alertEmail').value = '';
+  }
+
+
+  // Countdown timer
+  (function startTimer() {
+    let totalSecs = 1 * 3600 + 47 * 60 + 33;
+    const h = document.getElementById('hours');
+    const m = document.getElementById('mins');
+    const s = document.getElementById('secs');
+    function tick() {
+      if (totalSecs <= 0) {
+        h.textContent = m.textContent = s.textContent = '00';
+        return;
+      }
+      totalSecs--;
+      h.textContent = String(Math.floor(totalSecs / 3600)).padStart(2, '0');
+      m.textContent = String(Math.floor((totalSecs % 3600) / 60)).padStart(2, '0');
+      s.textContent = String(totalSecs % 60).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+</body>
+</html>

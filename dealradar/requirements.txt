@@ -1,0 +1,7 @@
+# DealPulses DealRadar™ — Python dependencies
+# Install with: pip install -r requirements.txt
+
+feedparser==6.0.11      # RSS/Atom feed parsing
+requests==2.32.3        # HTTP requests
+beautifulsoup4==4.12.3  # HTML parsing (strip tags from summaries)
+lxml==5.3.0             # Fast HTML/XML parser (used by BeautifulSoup)

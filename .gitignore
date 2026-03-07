@@ -1,0 +1,48 @@
+# ─── Python ───────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ─── Virtual environments ─────────────────────────────────────────
+dealradar/venv/
+venv/
+.venv/
+env/
+
+# ─── DealRadar runtime files (stay local, not committed) ──────────
+# NOTE: dealradar.db is intentionally excluded — GitHub Actions uses
+# the Actions Cache to persist it between runs (see dealradar.yml).
+dealradar/dealradar.db
+dealradar/dealradar.log
+dealradar/__pycache__/
+
+# price_history/ IS committed — it powers the deal detail pages
+# Uncomment below if you don't want price history in the repo:
+# price_history/
+
+# ─── macOS ────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# ─── Editors ──────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── Build artifacts ──────────────────────────────────────────────
+*.tar.gz
+*.zip
+dealpulse-scaffold.tar.gz
+dealpulse/
+dealpulses/
+deploy/
