@@ -49,7 +49,7 @@ CONFIG = {
         "log_path":           "dealradar.log",  # Log file
         "resend_hours":       24,               # Don't re-alert on same deal for 24h
         "max_deals_digest":   20,               # Max deals in a digest email
-        "request_timeout":    10,               # HTTP timeout in seconds
+        "request_timeout":    5,                # HTTP timeout in seconds
         "user_agent":         "DealPulses/1.0 DealRadar Bot (+https://dealpulses.com)",
         "max_age_days":       3,                # ← Skip any entry older than 3 days
         "resolve_merchant_urls": True,          # ← Follow aggregator links → direct merchant URL
