@@ -1006,12 +1006,48 @@
     return diff + ' days ago';
   }
 
+  // Aggregator domains whose images / branding should never appear on cards
+  const _AGGREGATOR_HOSTS = [
+    'slickdeals.net','dealnews.com','bradsdeals.com','bensbargains.com',
+    'dealmoon.com','dealsplus.com','hipsave.com','9to5toys.com','9to5mac.com',
+    'theverge.com','tomsguide.com','tomshardware.com','pcmag.com','cnet.com',
+    'digitaltrends.com','laptopmag.com','androidauthority.com','ign.com',
+    'camelcamelcamel.com','doctorofcredit.com','thepointsguy.com',
+    'nerdwallet.com','isthereanydeal.com','cheapshark.com',
+  ];
+  function _isAggregatorUrl(url) {
+    if (!url) return false;
+    try { return _AGGREGATOR_HOSTS.some(h => new URL(url).hostname.endsWith(h)); }
+    catch(e) { return false; }
+  }
+  // Turn feed names like "Slickdeals Front Page" into clean merchant labels
+  function _cleanSource(store, merchantUrl) {
+    if (!_isAggregatorUrl('https://' + (store || '').toLowerCase().replace(/\s/g,''))) {
+      // Already a merchant name — use as-is if it doesn't look like an aggregator feed
+      const aggregatorWords = ['slickdeals','dealnews','bradsdeals','9to5','wirecutter',
+        'techbargains','camelcamelcamel','doctorofcredit','pointsguy','nerdwallet'];
+      if (!aggregatorWords.some(w => (store||'').toLowerCase().includes(w))) return store;
+    }
+    // Extract merchant name from the resolved URL
+    try {
+      const host = new URL(merchantUrl).hostname.replace('www.','');
+      const parts = host.split('.');
+      const name = parts[parts.length - 2]; // e.g. "amazon" from "amazon.com"
+      return name.charAt(0).toUpperCase() + name.slice(1);
+    } catch(e) { return store; }
+  }
+
   function buildCard(deal) {
     const isExpired = deal.expired || deal.status === 'expired';
     const badgeHtml = deal.badge === 'HOT'
       ? '<span class="badge-hot">🔥 HOT</span>'
       : deal.badge === 'NEW' ? '<span class="badge-new">✨ NEW</span>' : '';
     const expiredBadgeHtml = isExpired ? '<span class="badge-expired-card">⏱ EXPIRED</span>' : '';
+
+    // Strip aggregator images — show nothing rather than a Slickdeals banner
+    const imageUrl = _isAggregatorUrl(deal.image_url) ? '' : (deal.image_url || '');
+    // Show clean merchant name instead of feed name like "Slickdeals Front Page"
+    const sourceLabel = _cleanSource(deal.store, deal.merchant_url);
 
     const card = document.createElement('div');
     card.className = 'deal-card' + (isExpired ? ' expired' : '');
@@ -1022,11 +1058,13 @@
     card.innerHTML = `
       ${isExpired ? expiredBadgeHtml : badgeHtml}
       <div class="deal-img">
-        <img src="${deal.image_url}" alt="${deal.title}" loading="lazy"
-             onerror="this.style.background='#eee';this.alt='Image unavailable'">
+        ${imageUrl
+          ? `<img src="${imageUrl}" alt="${deal.title}" loading="lazy"
+                  onerror="this.parentElement.style.display='none'">`
+          : ''}
       </div>
       <div class="deal-body">
-        <div class="deal-store">${deal.store}</div>
+        <div class="deal-store">${sourceLabel}</div>
         <div class="deal-title">${deal.title}</div>
         <div class="deal-price-row">
           <span class="deal-price-now">${fmtPrice(deal.price)}</span>
