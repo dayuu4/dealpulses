@@ -55,7 +55,7 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r dealradar/requirements.txt
 
-      # ── 5. Run DealRadar ───────────────────────────────────────
+      # ── 5a. Run DealRadar (Slickdeals RSS scanner) ─────────────
       - name: Run DealRadar scan
         id: radar
         run: |
@@ -66,13 +66,18 @@ jobs:
             python dealradar.py
           fi
         env:
-          # Override SMTP password via GitHub Secret (recommended).
-          # In your repo: Settings → Secrets → Actions → New secret
-          # Name: DEALRADAR_SMTP_PASS  Value: your 16-char app password
-          #
-          # If you haven't set up the secret yet, the hardcoded password
-          # in dealradar.py will be used as a fallback.
           DEALRADAR_SMTP_PASS: ${{ secrets.DEALRADAR_SMTP_PASS }}
+
+      # ── 5b. Run Merchant Scraper (direct retailer deals) ───────
+      - name: Run Merchant Scraper
+        id: merchant
+        # Runs in parallel logic: we always run this step regardless of DealRadar result
+        if: always()
+        run: |
+          cd dealradar
+          echo "🛒 Starting direct merchant scraper…"
+          python merchant_scraper.py
+          echo "✅ Merchant scraper complete"
 
       # ── 6. Copy output files to site root ─────────────────────
       - name: Copy deals.json to site root
@@ -113,12 +118,14 @@ jobs:
             echo "🚀 Pushed — Netlify will redeploy automatically"
           fi
 
-      # ── 8. Upload DealRadar log as artifact (for debugging) ───
-      - name: Upload scan log
+      # ── 8. Upload logs as artifacts (for debugging) ───────────
+      - name: Upload scan logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: dealradar-log-${{ github.run_number }}
-          path: dealradar/dealradar.log
+          name: dealradar-logs-${{ github.run_number }}
+          path: |
+            dealradar/dealradar.log
+            dealradar/merchant_scraper.log
           retention-days: 7
           if-no-files-found: ignore

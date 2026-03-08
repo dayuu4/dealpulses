@@ -93,628 +93,88 @@ CONFIG = {
 FEEDS = [
 
     # ════════════════════════════════════════════════════════════
-    #  GROUP 1 — TRUSTED DEAL AGGREGATORS
-    #  Pure deal curation, no general news mixed in
-    # ════════════════════════════════════════════════════════════
-    {
-        "name":     "Slickdeals Front Page",
-        "url":      "https://slickdeals.net/newsearch.php?mode=frontpage&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Slickdeals Popular Deals",
-        "url":      "https://slickdeals.net/newsearch.php?mode=popdeals&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "DealNews Top Deals",
-        "url":      "https://dealnews.com/feeds/popular.rss",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "DealNews Electronics",
-        "url":      "https://dealnews.com/c196/Electronics/feeds/popular.rss",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "DealNews Computers",
-        "url":      "https://dealnews.com/c6/Computers/feeds/popular.rss",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "DealNews Mobile Phones",
-        "url":      "https://dealnews.com/c357/Cell-Phones-Plans/feeds/popular.rss",
-        "category": "phone",
-        "priority": "high",
-    },
-    {
-        "name":     "DealNews Gaming",
-        "url":      "https://dealnews.com/c217/Gaming/feeds/popular.rss",
-        "category": "gaming",
-        "priority": "high",
-    },
-    # Ben's Bargains, Brad's Deals, Wirecutter removed — their links
-    # resolve through multi-hop redirects that end at google.com, not merchants.
-    {
-        "name":     "Woot! Daily Deals",
-        "url":      "https://www.woot.com/blog/feed.xml",
-        "category": "tech",
-        "priority": "high",
-    },
-    # TechBargains removed — resolves through Google redirect chains.
-    {
-        "name":     "FatWallet Tech",
-        "url":      "https://slickdeals.net/newsearch.php?q=deal+%25+off&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-
-    # ════════════════════════════════════════════════════════════
-    #  GROUP 2 — STORE-SPECIFIC SLICKDEALS RSS
-    #  Filters Slickdeals community deals by retailer name.
-    #  These are the most reliable real-time source per store.
-    # ════════════════════════════════════════════════════════════
-    {
-        "name":     "Amazon Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=amazon&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Walmart Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=walmart&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Best Buy Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=best+buy&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Target Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=target&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Newegg Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=newegg&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Micro Center Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=micro+center&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Costco Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=costco&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "B&H Photo Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=b%26h&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Adorama Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=adorama&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "Dell Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=dell&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Lenovo Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=lenovo&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "HP Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=hp+deal&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "Samsung Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=samsung&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Apple Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=apple&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Microsoft Store Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=microsoft+store&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "Anker Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=anker&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Logitech Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=logitech&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "GameStop Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=gamestop&searcharea=deals&searchin=first&rss=1",
-        "category": "gaming",
-        "priority": "medium",
-    },
-    {
-        "name":     "Razer Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=razer&searcharea=deals&searchin=first&rss=1",
-        "category": "gaming",
-        "priority": "medium",
-    },
-    {
-        "name":     "Corsair Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=corsair&searcharea=deals&searchin=first&rss=1",
-        "category": "gaming",
-        "priority": "medium",
-    },
-    {
-        "name":     "LG Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=lg+deal&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "Sony Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=sony&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "TCL / Hisense TV Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=tcl+hisense+tv&searcharea=deals&searchin=first&rss=1",
-        "category": "tv",
-        "priority": "medium",
-    },
-    {
-        "name":     "Sam's Club Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=sams+club&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Monoprice Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=monoprice&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "Staples Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=staples&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "low",
-    },
-    {
-        "name":     "eBay Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=ebay&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Overstock Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=overstock&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "low",
-    },
-
-    # ════════════════════════════════════════════════════════════
-    #  GROUP 3 — DIRECT RETAILER FEEDS
-    #  Official/direct deal pages with native RSS support
-    # ════════════════════════════════════════════════════════════
-    {
-        "name":     "Woot! Electronics",
-        "url":      "https://electronics.woot.com/feeds/all.rss",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Woot! Computers",
-        "url":      "https://computers.woot.com/feeds/all.rss",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "CamelCamelCamel — Amazon Price Drops",
-        "url":      "https://camelcamelcamel.com/top_drops/feed",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "CamelCamelCamel — Popular Electronics",
-        "url":      "https://camelcamelcamel.com/popular/rss?deal=1&catid=172282",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "eBay Daily Deals",
-        "url":      "https://deals.ebay.com/deals/rss",
-        "category": "general",
-        "priority": "medium",
-    },
-
-    # ════════════════════════════════════════════════════════════
-    #  GROUP 4 — removed: editorial sites (9to5Toys, 9to5Mac,
-    #  Android Authority, The Verge, Tom's Hardware, Tom's Guide,
-    #  PCMag, CNET, Digital Trends, Laptop Mag) all route their
-    #  article links through Google AMP/redirect chains that end
-    #  at google.com/preferences — not real merchant product pages.
+    #  SOURCE: SLICKDEALS RSS
+    #  Community-vetted deals. URL resolver unwraps every slickdeals
+    #  link → direct merchant product page (amazon.com, bestbuy.com…)
+    #  fetch_product_image() then pulls the real product photo.
+    #
+    #  NO editorial/news sites. NO CamelCamelCamel. NO DealNews.
+    #  All those routes ended at google.com redirect chains.
     # ════════════════════════════════════════════════════════════
 
-    # ════════════════════════════════════════════════════════════
-    #  GROUP 5 — GAMING DEALS
-    # ════════════════════════════════════════════════════════════
-    # IGN Game Deals + IsThereAnyDeal removed — editorial/tracker sites
-    # that don't resolve to direct merchant product pages.
-    # Humble Bundle kept as future scraping candidate when RSS is added.
-    {
-        "name":     "Slickdeals PS5",
-        "url":      "https://slickdeals.net/newsearch.php?q=ps5&searcharea=deals&searchin=first&rss=1",
-        "category": "gaming",
-        "priority": "medium",
-    },
-    {
-        "name":     "Slickdeals Xbox",
-        "url":      "https://slickdeals.net/newsearch.php?q=xbox&searcharea=deals&searchin=first&rss=1",
-        "category": "gaming",
-        "priority": "medium",
-    },
-    {
-        "name":     "Slickdeals Nintendo",
-        "url":      "https://slickdeals.net/newsearch.php?q=nintendo&searcharea=deals&searchin=first&rss=1",
-        "category": "gaming",
-        "priority": "medium",
-    },
+    # ── Front page & popular ───────────────────────────────────
+    {"name": "Slickdeals Front Page",    "url": "https://slickdeals.net/newsearch.php?mode=frontpage&searcharea=deals&searchin=first&rss=1", "category": "general", "priority": "high"},
+    {"name": "Slickdeals Popular Deals", "url": "https://slickdeals.net/newsearch.php?mode=popdeals&searcharea=deals&searchin=first&rss=1",  "category": "general", "priority": "high"},
+
+    # ── Major retailers ────────────────────────────────────────
+    {"name": "Amazon (Slickdeals)",      "url": "https://slickdeals.net/newsearch.php?q=amazon&searcharea=deals&searchin=first&rss=1",        "category": "general", "priority": "high"},
+    {"name": "Best Buy (Slickdeals)",    "url": "https://slickdeals.net/newsearch.php?q=best+buy&searcharea=deals&searchin=first&rss=1",      "category": "tech",    "priority": "high"},
+    {"name": "Walmart (Slickdeals)",     "url": "https://slickdeals.net/newsearch.php?q=walmart&searcharea=deals&searchin=first&rss=1",       "category": "general", "priority": "high"},
+    {"name": "Target (Slickdeals)",      "url": "https://slickdeals.net/newsearch.php?q=target&searcharea=deals&searchin=first&rss=1",        "category": "general", "priority": "high"},
+    {"name": "Costco (Slickdeals)",      "url": "https://slickdeals.net/newsearch.php?q=costco&searcharea=deals&searchin=first&rss=1",        "category": "general", "priority": "high"},
+    {"name": "Newegg (Slickdeals)",      "url": "https://slickdeals.net/newsearch.php?q=newegg&searcharea=deals&searchin=first&rss=1",        "category": "tech",    "priority": "high"},
+    {"name": "Micro Center (Slickdeals)","url": "https://slickdeals.net/newsearch.php?q=micro+center&searcharea=deals&searchin=first&rss=1", "category": "tech",    "priority": "high"},
+    {"name": "B&H Photo (Slickdeals)",   "url": "https://slickdeals.net/newsearch.php?q=b%26h&searcharea=deals&searchin=first&rss=1",         "category": "tech",    "priority": "high"},
+    {"name": "Adorama (Slickdeals)",     "url": "https://slickdeals.net/newsearch.php?q=adorama&searcharea=deals&searchin=first&rss=1",       "category": "tech",    "priority": "medium"},
+    {"name": "Sam's Club (Slickdeals)",  "url": "https://slickdeals.net/newsearch.php?q=sams+club&searcharea=deals&searchin=first&rss=1",    "category": "general", "priority": "medium"},
+    {"name": "Staples (Slickdeals)",     "url": "https://slickdeals.net/newsearch.php?q=staples&searcharea=deals&searchin=first&rss=1",       "category": "tech",    "priority": "low"},
+    {"name": "eBay (Slickdeals)",        "url": "https://slickdeals.net/newsearch.php?q=ebay&searcharea=deals&searchin=first&rss=1",          "category": "general", "priority": "medium"},
+
+    # ── Tech brands ────────────────────────────────────────────
+    {"name": "Dell (Slickdeals)",        "url": "https://slickdeals.net/newsearch.php?q=dell&searcharea=deals&searchin=first&rss=1",          "category": "tech",    "priority": "high"},
+    {"name": "Lenovo (Slickdeals)",      "url": "https://slickdeals.net/newsearch.php?q=lenovo&searcharea=deals&searchin=first&rss=1",        "category": "tech",    "priority": "high"},
+    {"name": "HP (Slickdeals)",          "url": "https://slickdeals.net/newsearch.php?q=hp+deal&searcharea=deals&searchin=first&rss=1",       "category": "tech",    "priority": "medium"},
+    {"name": "Samsung (Slickdeals)",     "url": "https://slickdeals.net/newsearch.php?q=samsung&searcharea=deals&searchin=first&rss=1",       "category": "tech",    "priority": "high"},
+    {"name": "Apple (Slickdeals)",       "url": "https://slickdeals.net/newsearch.php?q=apple&searcharea=deals&searchin=first&rss=1",         "category": "tech",    "priority": "high"},
+    {"name": "Microsoft (Slickdeals)",   "url": "https://slickdeals.net/newsearch.php?q=microsoft+store&searcharea=deals&searchin=first&rss=1","category":"tech",   "priority": "medium"},
+    {"name": "LG (Slickdeals)",          "url": "https://slickdeals.net/newsearch.php?q=lg+deal&searcharea=deals&searchin=first&rss=1",       "category": "tech",    "priority": "medium"},
+    {"name": "Sony (Slickdeals)",        "url": "https://slickdeals.net/newsearch.php?q=sony&searcharea=deals&searchin=first&rss=1",          "category": "tech",    "priority": "high"},
+    {"name": "Anker (Slickdeals)",       "url": "https://slickdeals.net/newsearch.php?q=anker&searcharea=deals&searchin=first&rss=1",         "category": "tech",    "priority": "high"},
+    {"name": "Logitech (Slickdeals)",    "url": "https://slickdeals.net/newsearch.php?q=logitech&searcharea=deals&searchin=first&rss=1",      "category": "tech",    "priority": "medium"},
+    {"name": "ASUS (Slickdeals)",        "url": "https://slickdeals.net/newsearch.php?q=asus&searcharea=deals&searchin=first&rss=1",          "category": "tech",    "priority": "high"},
+    {"name": "Acer (Slickdeals)",        "url": "https://slickdeals.net/newsearch.php?q=acer&searcharea=deals&searchin=first&rss=1",          "category": "tech",    "priority": "high"},
+    {"name": "MSI (Slickdeals)",         "url": "https://slickdeals.net/newsearch.php?q=msi&searcharea=deals&searchin=first&rss=1",           "category": "tech",    "priority": "high"},
+    {"name": "Roku (Slickdeals)",        "url": "https://slickdeals.net/newsearch.php?q=roku&searcharea=deals&searchin=first&rss=1",          "category": "tv",      "priority": "high"},
+    {"name": "TCL (Slickdeals)",         "url": "https://slickdeals.net/newsearch.php?q=tcl&searcharea=deals&searchin=first&rss=1",           "category": "tv",      "priority": "high"},
+    {"name": "Hisense (Slickdeals)",     "url": "https://slickdeals.net/newsearch.php?q=hisense&searcharea=deals&searchin=first&rss=1",       "category": "tv",      "priority": "high"},
+    {"name": "Bose (Slickdeals)",        "url": "https://slickdeals.net/newsearch.php?q=bose&searcharea=deals&searchin=first&rss=1",          "category": "audio",   "priority": "high"},
+    {"name": "JBL (Slickdeals)",         "url": "https://slickdeals.net/newsearch.php?q=jbl&searcharea=deals&searchin=first&rss=1",           "category": "audio",   "priority": "high"},
+    {"name": "Sennheiser (Slickdeals)",  "url": "https://slickdeals.net/newsearch.php?q=sennheiser&searcharea=deals&searchin=first&rss=1",    "category": "audio",   "priority": "high"},
+    {"name": "Baseus (Slickdeals)",      "url": "https://slickdeals.net/newsearch.php?q=baseus&searcharea=deals&searchin=first&rss=1",        "category": "tech",    "priority": "high"},
+    {"name": "UGREEN (Slickdeals)",      "url": "https://slickdeals.net/newsearch.php?q=ugreen&searcharea=deals&searchin=first&rss=1",        "category": "tech",    "priority": "high"},
+    {"name": "eufy (Slickdeals)",        "url": "https://slickdeals.net/newsearch.php?q=eufy&searcharea=deals&searchin=first&rss=1",          "category": "tech",    "priority": "high"},
+    {"name": "BLUETTI (Slickdeals)",     "url": "https://slickdeals.net/newsearch.php?q=bluetti&searcharea=deals&searchin=first&rss=1",       "category": "tech",    "priority": "high"},
+    {"name": "Google Pixel (Slickdeals)","url": "https://slickdeals.net/newsearch.php?q=google+pixel&searcharea=deals&searchin=first&rss=1", "category": "phone",   "priority": "high"},
+    {"name": "Razer (Slickdeals)",       "url": "https://slickdeals.net/newsearch.php?q=razer&searcharea=deals&searchin=first&rss=1",         "category": "gaming",  "priority": "medium"},
+    {"name": "Corsair (Slickdeals)",     "url": "https://slickdeals.net/newsearch.php?q=corsair&searcharea=deals&searchin=first&rss=1",       "category": "gaming",  "priority": "medium"},
+    {"name": "Canon (Slickdeals)",       "url": "https://slickdeals.net/newsearch.php?q=canon&searcharea=deals&searchin=first&rss=1",         "category": "tech",    "priority": "high"},
+    {"name": "DJI (Slickdeals)",         "url": "https://slickdeals.net/newsearch.php?q=dji&searcharea=deals&searchin=first&rss=1",           "category": "tech",    "priority": "high"},
+    {"name": "GoPro (Slickdeals)",       "url": "https://slickdeals.net/newsearch.php?q=gopro&searcharea=deals&searchin=first&rss=1",         "category": "tech",    "priority": "high"},
+    {"name": "Adobe (Slickdeals)",       "url": "https://slickdeals.net/newsearch.php?q=adobe&searcharea=deals&searchin=first&rss=1",         "category": "software","priority": "high"},
+    {"name": "NordVPN (Slickdeals)",     "url": "https://slickdeals.net/newsearch.php?q=nordvpn&searcharea=deals&searchin=first&rss=1",       "category": "software","priority": "high"},
+
+    # ── Carriers / mobile ──────────────────────────────────────
+    {"name": "Verizon (Slickdeals)",     "url": "https://slickdeals.net/newsearch.php?q=verizon&searcharea=deals&searchin=first&rss=1",       "category": "phone",   "priority": "high"},
+    {"name": "T-Mobile (Slickdeals)",    "url": "https://slickdeals.net/newsearch.php?q=t-mobile&searcharea=deals&searchin=first&rss=1",      "category": "phone",   "priority": "high"},
+    {"name": "AT&T (Slickdeals)",        "url": "https://slickdeals.net/newsearch.php?q=att&searcharea=deals&searchin=first&rss=1",           "category": "phone",   "priority": "high"},
+    {"name": "Mint Mobile (Slickdeals)", "url": "https://slickdeals.net/newsearch.php?q=mint+mobile&searcharea=deals&searchin=first&rss=1",   "category": "phone",   "priority": "high"},
+
+    # ── Gaming ─────────────────────────────────────────────────
+    {"name": "PS5 (Slickdeals)",         "url": "https://slickdeals.net/newsearch.php?q=ps5&searcharea=deals&searchin=first&rss=1",           "category": "gaming",  "priority": "medium"},
+    {"name": "Xbox (Slickdeals)",        "url": "https://slickdeals.net/newsearch.php?q=xbox&searcharea=deals&searchin=first&rss=1",          "category": "gaming",  "priority": "medium"},
+    {"name": "Nintendo (Slickdeals)",    "url": "https://slickdeals.net/newsearch.php?q=nintendo&searcharea=deals&searchin=first&rss=1",      "category": "gaming",  "priority": "medium"},
+    {"name": "GameStop (Slickdeals)",    "url": "https://slickdeals.net/newsearch.php?q=gamestop&searcharea=deals&searchin=first&rss=1",      "category": "gaming",  "priority": "medium"},
 
     # ════════════════════════════════════════════════════════════
-    #  GROUP 7 — YOUR TOP RETAILERS (SLICKDEALS RSS)
-    #  Covers every store on the DealPulses priority retailer list
-    #  that was not already in Group 2.
+    #  SOURCE: DIRECT MERCHANT RSS (no aggregator middleman)
+    #  Links in these feeds point straight to the retailer's own
+    #  product pages — no URL resolution needed.
     # ════════════════════════════════════════════════════════════
-    {
-        "name":     "AliExpress Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=aliexpress&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Woot! Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=woot&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Woot! Sport & Outdoors",
-        "url":      "https://sport.woot.com/feeds/all.rss",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Woot! Tools & Garden",
-        "url":      "https://tools.woot.com/feeds/all.rss",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Woot! Sellout (Daily Deal)",
-        "url":      "https://sellout.woot.com/feeds/all.rss",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Verizon Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=verizon&searcharea=deals&searchin=first&rss=1",
-        "category": "phone",
-        "priority": "high",
-    },
-    {
-        "name":     "Google Fi Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=google+fi&searcharea=deals&searchin=first&rss=1",
-        "category": "phone",
-        "priority": "medium",
-    },
-    {
-        "name":     "Mint Mobile Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=mint+mobile&searcharea=deals&searchin=first&rss=1",
-        "category": "phone",
-        "priority": "high",
-    },
-    {
-        "name":     "Spectrum Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=spectrum+internet&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "SideDeal Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=sidedeal&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Google Play Store Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=google+play&searcharea=deals&searchin=first&rss=1",
-        "category": "software",
-        "priority": "medium",
-    },
-    {
-        "name":     "Greentoe Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=greentoe&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "Secondipity Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=secondipity&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-
-    # ════════════════════════════════════════════════════════════
-    #  GROUP 8 — YOUR TOP 50 TECH BRANDS (SLICKDEALS RSS)
-    #  One feed per brand — catches deals across ALL retailers
-    #  that carry that brand, not just the brand's own store.
-    # ════════════════════════════════════════════════════════════
-    {
-        "name":     "Roku Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=roku&searcharea=deals&searchin=first&rss=1",
-        "category": "tv",
-        "priority": "high",
-    },
-    {
-        "name":     "Baseus Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=baseus&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "LISEN Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=lisen&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "ECO-WORTHY Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=eco-worthy&searcharea=deals&searchin=first&rss=1",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Hisense TV Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=hisense&searcharea=deals&searchin=first&rss=1",
-        "category": "tv",
-        "priority": "high",
-    },
-    {
-        "name":     "Sennheiser Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=sennheiser&searcharea=deals&searchin=first&rss=1",
-        "category": "audio",
-        "priority": "high",
-    },
-    {
-        "name":     "Bose Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=bose&searcharea=deals&searchin=first&rss=1",
-        "category": "audio",
-        "priority": "high",
-    },
-    {
-        "name":     "Klipsch Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=klipsch&searcharea=deals&searchin=first&rss=1",
-        "category": "audio",
-        "priority": "high",
-    },
-    {
-        "name":     "JBL Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=jbl&searcharea=deals&searchin=first&rss=1",
-        "category": "audio",
-        "priority": "high",
-    },
-    {
-        "name":     "Acer Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=acer&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "ASUS Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=asus&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "TCL Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=tcl&searcharea=deals&searchin=first&rss=1",
-        "category": "tv",
-        "priority": "high",
-    },
-    {
-        "name":     "RayNeo Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=rayneo&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "BLUETTI Power Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=bluetti&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "eufy Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=eufy&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "UGREEN Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=ugreen&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Google Pixel & Fitbit Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=google+pixel&searcharea=deals&searchin=first&rss=1",
-        "category": "phone",
-        "priority": "high",
-    },
-    {
-        "name":     "Energizer Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=energizer&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "Cable Matters Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=cable+matters&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "WAVLINK Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=wavlink&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "GameSir Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=gamesir&searcharea=deals&searchin=first&rss=1",
-        "category": "gaming",
-        "priority": "medium",
-    },
-    {
-        "name":     "Fosi Audio Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=fosi+audio&searcharea=deals&searchin=first&rss=1",
-        "category": "audio",
-        "priority": "medium",
-    },
-    {
-        "name":     "Orico Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=orico&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "WOLFBOX Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=wolfbox&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "Westinghouse Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=westinghouse&searcharea=deals&searchin=first&rss=1",
-        "category": "tv",
-        "priority": "medium",
-    },
-    {
-        "name":     "Mangmi Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=mangmi&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "medium",
-    },
-
-    # ════════════════════════════════════════════════════════════
-    #  GROUP 9 — REMAINING TOP-100 COMPANIES
-    #  Completes full coverage of the Slickdeals top-100 list.
-    #  Organised by tier: retail → telecom → streaming → software
-    #  → food/travel → home/tools → beauty/apparel → other.
-    # ════════════════════════════════════════════════════════════
-
-    # ── Telecom / Carriers ─────────────────────────────────────
-    {
-        "name":     "T-Mobile Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=t-mobile&searcharea=deals&searchin=first&rss=1",
-        "category": "phone",
-        "priority": "high",
-    },
-    {
-        "name":     "AT&T Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=att&searcharea=deals&searchin=first&rss=1",
-        "category": "phone",
-        "priority": "high",
-    },
-    {
-        "name":     "Xfinity Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=xfinity&searcharea=deals&searchin=first&rss=1",
-        "category": "phone",
-        "priority": "medium",
-    },
-
-    # ── Software / SaaS ────────────────────────────────────────
-    {
-        "name":     "Adobe Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=adobe&searcharea=deals&searchin=first&rss=1",
-        "category": "software",
-        "priority": "high",
-    },
-    {
-        "name":     "NordVPN Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=nordvpn&searcharea=deals&searchin=first&rss=1",
-        "category": "software",
-        "priority": "high",
-    },
-    # ── Cameras / Drones / Action Cams ─────────────────────────
-    {
-        "name":     "Canon Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=canon&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "DJI Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=dji&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "GoPro Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=gopro&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-
-    # ── MSI / Yamaha ────────────────────────────────────────────
-    {
-        "name":     "MSI Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=msi&searcharea=deals&searchin=first&rss=1",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Yamaha Deals (Slickdeals)",
-        "url":      "https://slickdeals.net/newsearch.php?q=yamaha&searcharea=deals&searchin=first&rss=1",
-        "category": "audio",
-        "priority": "high",
-    },
+    {"name": "Woot! Electronics",        "url": "https://electronics.woot.com/feeds/all.rss",  "category": "tech",    "priority": "high"},
+    {"name": "Woot! Computers",          "url": "https://computers.woot.com/feeds/all.rss",    "category": "tech",    "priority": "high"},
+    {"name": "Woot! Daily Deals",        "url": "https://www.woot.com/blog/feed.xml",           "category": "general", "priority": "high"},
+    {"name": "Woot! Sellout",            "url": "https://sellout.woot.com/feeds/all.rss",       "category": "general", "priority": "high"},
+    {"name": "eBay Daily Deals",         "url": "https://deals.ebay.com/deals/rss",             "category": "general", "priority": "medium"},
 
 ]
 
