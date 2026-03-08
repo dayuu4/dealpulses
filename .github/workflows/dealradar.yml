@@ -81,7 +81,7 @@ jobs:
           # We need it at the repo root so the website can fetch it.
           if [ -f dealradar/deals.json ]; then
             cp dealradar/deals.json deals.json
-            echo "✅ deals.json updated ($(jq length deals.json) deals)"
+            echo "✅ deals.json updated ($(jq '.deals | length' deals.json) deals)"
           else
             echo "⚠️  dealradar/deals.json not found — skipping copy"
           fi
@@ -107,7 +107,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "ℹ️  No changes to deals.json — skipping commit"
           else
-            DEAL_COUNT=$(jq length deals.json 2>/dev/null || echo "?")
+            DEAL_COUNT=$(jq '.deals | length' deals.json 2>/dev/null || echo "?")
             git commit -m "🤖 DealRadar: refresh deals.json (${DEAL_COUNT} deals) [skip ci]"
             git push
             echo "🚀 Pushed — Netlify will redeploy automatically"

@@ -908,8 +908,11 @@ MERCHANT_DOMAINS = {
     "xfinity.com", "cricketwireless.com", "boostmobile.com",
     # ── Shopping / QVC / pharmacy ──────────────────────────────────
     "qvc.com", "hsn.com", "walgreens.com", "cvs.com",
-    # ── App stores ─────────────────────────────────────────────────
-    "play.google.com", "store.google.com",
+    # ── Google hardware store (Pixel, Chromecast, etc.) ────────────
+    # NOTE: play.google.com intentionally excluded — it's the Android
+    # app store and Slickdeals posts often redirect to the Slickdeals
+    # app listing there, not to any real product deal.
+    "store.google.com",
     # ── Home improvement ───────────────────────────────────────────
     "homedepot.com", "lowes.com", "wayfair.com",
     # ── Gaming platforms ───────────────────────────────────────────
@@ -1372,6 +1375,37 @@ def init_db():
             cached_at     TEXT
         )
     """)
+
+    con.commit()
+
+    # ── One-time cleanup: purge deals whose URL resolved to junk ───────────
+    # play.google.com was incorrectly listed as a merchant domain, causing
+    # Slickdeals app redirect links (669+) to be stored as real deals.
+    # Also remove any remaining raw aggregator links that slipped through.
+    _JUNK_URL_PATTERNS = [
+        "%play.google.com%",
+        "%apps.apple.com%",
+    ]
+    _JUNK_DOMAIN_PATTERNS = [
+        "%slickdeals.net%",
+    ]
+    for pat in _JUNK_URL_PATTERNS + _JUNK_DOMAIN_PATTERNS:
+        deleted = cur.execute(
+            "DELETE FROM deals WHERE url LIKE ?", (pat,)
+        ).rowcount
+        if deleted:
+            log.info(f"DB cleanup: removed {deleted} junk deals matching {pat!r}")
+
+    # Also clear url_cache entries whose resolved URL is junk so they get
+    # re-resolved properly on the next scan
+    for pat in _JUNK_URL_PATTERNS + _JUNK_DOMAIN_PATTERNS:
+        deleted = cur.execute(
+            "DELETE FROM url_cache WHERE resolved_url LIKE ?", (pat,)
+        ).rowcount if cur.execute(
+            "SELECT name FROM sqlite_master WHERE name='url_cache'"
+        ).fetchone() else 0
+        if deleted:
+            log.info(f"DB cleanup: cleared {deleted} url_cache entries matching {pat!r}")
 
     con.commit()
     con.close()
