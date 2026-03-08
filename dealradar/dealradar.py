@@ -1612,12 +1612,20 @@ def export_deals_json(deals: list, output_dir: str = "."):
     active_count = 0
     expired_count = 0
 
+    # Hosts that are never useful as deal destinations (e.g. Slickdeals app redirects)
+    _JUNK_EXPORT_HOSTS = {"play.google.com", "apps.apple.com"}
+
     for d in deals:
         did    = d.get("id", "")
-        status = status_map.get(did, "active")
+        status = status_map.get(did, d.get("status", "active"))
 
         # "gone" = HTTP error page — exclude entirely, don't show on site at all
         if status == "gone":
+            continue
+
+        # Skip deals whose URL resolved to a junk/redirect destination
+        deal_url = d.get("url", "") or ""
+        if _host(deal_url) in _JUNK_EXPORT_HOSTS:
             continue
 
         is_exp = (status == "expired")
@@ -2184,11 +2192,38 @@ def run_radar(force_digest=False, top_n=None):
     except Exception as exc:
         log.warning(f"Expiry check failed: {exc}")
 
-    # Export deals.json + price_history/*.json for the website
-    if all_deals and CONFIG["settings"].get("export_json", True):
+    # Export deals.json + price_history/*.json for the website.
+    # Query the FULL DB (not just this scan's batch) so the site shows
+    # all recent deals accumulated over many runs, not only 3 new ones.
+    if CONFIG["settings"].get("export_json", True):
         export_dir = CONFIG["settings"].get("export_json_dir", ".")
         try:
-            export_deals_json(all_deals, output_dir=export_dir)
+            max_age = CONFIG["settings"].get("max_age_days", 3)
+            cutoff  = (datetime.datetime.utcnow() -
+                       datetime.timedelta(days=max_age)).strftime("%Y-%m-%dT%H:%M:%S")
+            con_e = get_db()
+            cur_e = con_e.cursor()
+            rows  = cur_e.execute("""
+                SELECT id, title, url, source, category, score,
+                       price_now, price_was, discount, summary,
+                       first_seen, last_seen, image_url, status
+                FROM   deals
+                WHERE  last_seen >= ? AND status != 'gone'
+                ORDER  BY score DESC, last_seen DESC
+            """, (cutoff,)).fetchall()
+            con_e.close()
+            db_deals = [
+                {
+                    "id":         r[0],  "title":     r[1],  "url":      r[2],
+                    "source":     r[3],  "category":  r[4],  "score":    r[5],
+                    "price_now":  r[6],  "price_was": r[7],  "discount": r[8],
+                    "summary":    r[9],  "first_seen":r[10], "last_seen":r[11],
+                    "image_url":  r[12], "status":    r[13],
+                }
+                for r in rows
+            ]
+            log.info(f"Exporting {len(db_deals)} deals from DB (last {max_age} days)…")
+            export_deals_json(db_deals, output_dir=export_dir)
         except Exception as exc:
             log.warning(f"JSON export failed: {exc}")
 
