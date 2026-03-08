@@ -1840,6 +1840,13 @@ def parse_entry(entry, feed_cfg):
             log.debug(f"    ⛔ Skipping: unresolved aggregator URL for '{title[:50]}'")
             return None
 
+    # ── Reject deals that resolved to a junk/redirect destination ──
+    # play.google.com = Slickdeals app redirect, not a real deal page
+    _JUNK_HOSTS = {"play.google.com", "apps.apple.com"}
+    if _host(url) in _JUNK_HOSTS:
+        log.debug(f"    ⛔ Skipping: URL resolved to junk host '{_host(url)}' for '{title[:50]}'")
+        return None
+
     # ── Freshness filter: drop entries older than max_age_days ────
     max_age = CONFIG["settings"].get("max_age_days", 3)
     pub_time = (
