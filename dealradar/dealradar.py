@@ -138,36 +138,15 @@ FEEDS = [
         "category": "gaming",
         "priority": "high",
     },
-    {
-        "name":     "Ben's Bargains",
-        "url":      "https://bensbar gains.net/feed/",
-        "category": "general",
-        "priority": "high",
-    },
-    {
-        "name":     "Brad's Deals",
-        "url":      "https://www.bradsdeals.com/feed",
-        "category": "general",
-        "priority": "medium",
-    },
-    {
-        "name":     "Wirecutter Deals",
-        "url":      "https://www.nytimes.com/wirecutter/deals/feed/",
-        "category": "tech",
-        "priority": "high",
-    },
+    # Ben's Bargains, Brad's Deals, Wirecutter removed — their links
+    # resolve through multi-hop redirects that end at google.com, not merchants.
     {
         "name":     "Woot! Daily Deals",
         "url":      "https://www.woot.com/blog/feed.xml",
         "category": "tech",
         "priority": "high",
     },
-    {
-        "name":     "TechBargains",
-        "url":      "https://www.techbargains.com/feed",
-        "category": "tech",
-        "priority": "high",
-    },
+    # TechBargains removed — resolves through Google redirect chains.
     {
         "name":     "FatWallet Tech",
         "url":      "https://slickdeals.net/newsearch.php?q=deal+%25+off&searcharea=deals&searchin=first&rss=1",
@@ -385,92 +364,19 @@ FEEDS = [
     },
 
     # ════════════════════════════════════════════════════════════
-    #  GROUP 4 — TECH & GADGET DEALS PUBLISHERS
-    #  These sites publish deals-ONLY content, not general tech news
+    #  GROUP 4 — removed: editorial sites (9to5Toys, 9to5Mac,
+    #  Android Authority, The Verge, Tom's Hardware, Tom's Guide,
+    #  PCMag, CNET, Digital Trends, Laptop Mag) all route their
+    #  article links through Google AMP/redirect chains that end
+    #  at google.com/preferences — not real merchant product pages.
     # ════════════════════════════════════════════════════════════
-    {
-        "name":     "9to5Toys",
-        "url":      "https://9to5toys.com/feed/",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "9to5Mac Deals",
-        "url":      "https://9to5mac.com/guides/deals/feed/",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Android Authority Deals",
-        "url":      "https://www.androidauthority.com/deals/feed/",
-        "category": "phone",
-        "priority": "high",
-    },
-    {
-        "name":     "The Verge Deals",
-        "url":      "https://www.theverge.com/rss/deals/index.xml",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Tom's Hardware Deals",
-        "url":      "https://www.tomshardware.com/feeds/all",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "Tom's Guide Deals",
-        "url":      "https://www.tomsguide.com/feeds/deals",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "PCMag Deals",
-        "url":      "https://www.pcmag.com/feeds/deals",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "CNET Deals",
-        "url":      "https://www.cnet.com/rss/deals/",
-        "category": "tech",
-        "priority": "high",
-    },
-    {
-        "name":     "Digital Trends Deals",
-        "url":      "https://www.digitaltrends.com/deals/feed/",
-        "category": "tech",
-        "priority": "medium",
-    },
-    {
-        "name":     "Laptop Mag Deals",
-        "url":      "https://www.laptopmag.com/feeds/deals",
-        "category": "laptop",
-        "priority": "medium",
-    },
 
     # ════════════════════════════════════════════════════════════
     #  GROUP 5 — GAMING DEALS
     # ════════════════════════════════════════════════════════════
-    {
-        "name":     "IGN Game Deals",
-        "url":      "https://feeds.ign.com/ign/video-game-deals",
-        "category": "gaming",
-        "priority": "high",
-    },
-    {
-        "name":     "Humble Bundle Deals",
-        "url":      "https://www.humblebundle.com/store/deals?ajax=true",
-        "category": "gaming",
-        "priority": "medium",
-        "rss":      False,   # No RSS — future scraping candidate
-    },
-    {
-        "name":     "IsThereAnyDeal",
-        "url":      "https://isthereanydeal.com/rss/recent/",
-        "category": "gaming",
-        "priority": "high",
-    },
+    # IGN Game Deals + IsThereAnyDeal removed — editorial/tracker sites
+    # that don't resolve to direct merchant product pages.
+    # Humble Bundle kept as future scraping candidate when RSS is added.
     {
         "name":     "Slickdeals PS5",
         "url":      "https://slickdeals.net/newsearch.php?q=ps5&searcharea=deals&searchin=first&rss=1",
@@ -887,6 +793,21 @@ AGGREGATOR_DOMAINS = {
     "isthereanydeal.com",
     "cheapshark.com",
     "fanatical.com",
+    # Google domains — editorial feeds often redirect through Google AMP/tracking
+    # and end up at google.com/preferences or similar non-product pages.
+    "google.com",
+    "googleapis.com",
+    "amp.google.com",
+    # Other editorial/deal-tracker sites whose links never resolve to merchants
+    "frequentmiler.com",
+    "onemileatatime.com",
+    "milevalue.com",
+    "bensbargains.net",
+    "bradsdeals.com",
+    "techbargains.com",
+    "wirecutter.com",
+    "nytimes.com",
+    "macrumors.com",
 }
 
 # Direct retailers — a link landing here is already a merchant URL
@@ -1378,34 +1299,63 @@ def init_db():
 
     con.commit()
 
-    # ── One-time cleanup: purge deals whose URL resolved to junk ───────────
-    # play.google.com was incorrectly listed as a merchant domain, causing
-    # Slickdeals app redirect links (669+) to be stored as real deals.
-    # Also remove any remaining raw aggregator links that slipped through.
-    _JUNK_URL_PATTERNS = [
+    # ── Startup cleanup: purge any deals whose stored URL is not a real merchant
+    # This runs every startup and is idempotent — once clean the DELETE is a no-op.
+    _JUNK_PATTERNS = [
+        # App store redirects (Slickdeals app links)
         "%play.google.com%",
         "%apps.apple.com%",
-    ]
-    _JUNK_DOMAIN_PATTERNS = [
+        # Raw aggregator links that were stored before resolver was working
         "%slickdeals.net%",
+        "%dealnews.com%",
+        # Google redirect/AMP chains from editorial feeds
+        "%google.com%",
+        # Editorial / deal-tracker sites that are not merchants
+        "%frequentmiler.com%",
+        "%onemileatatime.com%",
+        "%thepointsguy.com%",
+        "%camelcamelcamel.com%",
+        "%androidauthority.com%",
+        "%9to5toys.com%",
+        "%9to5mac.com%",
+        "%theverge.com%",
+        "%tomshardware.com%",
+        "%tomsguide.com%",
+        "%pcmag.com%",
+        "%cnet.com%",
+        "%digitaltrends.com%",
+        "%laptopmag.com%",
+        "%ign.com%",
+        "%bensbargains.net%",
+        "%bradsdeals.com%",
+        "%techbargains.com%",
+        "%isthereanydeal.com%",
+        "%cheapshark.com%",
+        "%nytimes.com%",
+        "%wirecutter.com%",
+        "%macrumors.com%",
+        "%doctorofcredit.com%",
+        "%nerdwallet.com%",
+        "%milevalue.com%",
+        "%bankrate.com%",
+        "%creditcards.com%",
+        "%secretflying.com%",
     ]
-    for pat in _JUNK_URL_PATTERNS + _JUNK_DOMAIN_PATTERNS:
+    has_cache = bool(cur.execute(
+        "SELECT name FROM sqlite_master WHERE name='url_cache'"
+    ).fetchone())
+    for pat in _JUNK_PATTERNS:
         deleted = cur.execute(
             "DELETE FROM deals WHERE url LIKE ?", (pat,)
         ).rowcount
         if deleted:
             log.info(f"DB cleanup: removed {deleted} junk deals matching {pat!r}")
-
-    # Also clear url_cache entries whose resolved URL is junk so they get
-    # re-resolved properly on the next scan
-    for pat in _JUNK_URL_PATTERNS + _JUNK_DOMAIN_PATTERNS:
-        deleted = cur.execute(
-            "DELETE FROM url_cache WHERE resolved_url LIKE ?", (pat,)
-        ).rowcount if cur.execute(
-            "SELECT name FROM sqlite_master WHERE name='url_cache'"
-        ).fetchone() else 0
-        if deleted:
-            log.info(f"DB cleanup: cleared {deleted} url_cache entries matching {pat!r}")
+        if has_cache:
+            deleted_c = cur.execute(
+                "DELETE FROM url_cache WHERE resolved_url LIKE ?", (pat,)
+            ).rowcount
+            if deleted_c:
+                log.info(f"DB cleanup: cleared {deleted_c} url_cache entries matching {pat!r}")
 
     con.commit()
     con.close()
