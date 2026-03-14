@@ -920,10 +920,25 @@ def enrich_images(deals: list[dict]) -> list[dict]:
 
 
 # ─────────────────────────────────────────────────────────────────
-#  JSON EXPORT  (same format as dealradar.py)
+#  JSON EXPORT  — must match the exact format dealradar.py writes
+#  so the website (index.html) can read both sources seamlessly.
+#
+#  Website field names:   DB column names:
+#    store              ← source
+#    merchant_url       ← url
+#    price              ← price_now
+#    original_price     ← price_was
+#    discount_percent   ← discount
+#    description        ← summary
+#    upvotes            ← score
 # ─────────────────────────────────────────────────────────────────
 def export_json(output_dir: str = "."):
-    """Read all recent deals from DB and write deals.json."""
+    """
+    Read all recent deals from DB and write deals.json in the
+    same format that dealradar.py produces (the format index.html expects).
+    This runs after dealradar.py has already written deals.json, so it
+    re-reads the full DB and regenerates the file with ALL deals merged.
+    """
     cutoff = (datetime.datetime.utcnow() -
               datetime.timedelta(days=MAX_AGE_DAYS)).strftime("%Y-%m-%dT%H:%M:%S")
     try:
@@ -942,19 +957,47 @@ def export_json(output_dir: str = "."):
         log.error(f"export_json DB error: {e}")
         return
 
+    _JUNK_EXPORT_HOSTS = {"play.google.com", "apps.apple.com"}
+
     deal_list = []
     for r in rows:
+        (did, title, url, source, category, score,
+         price_now, price_was, discount, summary,
+         first_seen, last_seen, image_url, status) = r
+
+        # Skip junk URLs
+        if _host(url or "") in _JUNK_EXPORT_HOSTS:
+            continue
+
+        is_exp = (status == "expired")
+        badge  = ("HOT" if (score or 0) >= 75 and not is_exp
+                  else ("EXPIRED" if is_exp else ""))
+
         deal_list.append({
-            "id": r[0], "title": r[1], "url": r[2], "source": r[3],
-            "category": r[4], "score": r[5],
-            "price_now": r[6], "price_was": r[7], "discount": r[8],
-            "summary": r[9], "first_seen": r[10], "last_seen": r[11],
-            "image_url": r[12] or "", "status": r[13],
+            "id":               did,
+            "title":            title or "",
+            "price":            price_now,
+            "original_price":   price_was,
+            "discount_percent": int(discount or 0),
+            "store":            source or "",
+            "badge":            badge,
+            "category":         category or "",
+            "merchant_url":     url or "",
+            "image_url":        image_url or "",
+            "description":      summary or "",
+            "specs":            {},
+            "upvotes":          score or 0,
+            "downvotes":        0,
+            "comment_count":    0,
+            "posted_date":      (first_seen or "")[:10],
+            "expires":          None,
+            "expired":          is_exp,
+            "status":           status or "active",
         })
 
     payload = {
-        "version":   "1.0",
-        "generated": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "version":   1,
+        "generated": datetime.datetime.utcnow().strftime("%Y-%m-%d"),
         "deals":     deal_list,
     }
     out_path = os.path.join(output_dir, "deals.json")
